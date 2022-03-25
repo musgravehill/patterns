@@ -22,12 +22,10 @@ RUN apt-get update && apt-get install -y \
 	libpng-dev \
 	libonig-dev \
 	libzip-dev \
-	libmcrypt-dev \
-        && pecl install mcrypt-1.0.3 \
-	&& docker-php-ext-enable mcrypt \
-        && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
+	libmcrypt-dev          
+RUN docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-        && docker-php-ext-install -j$(nproc) gd 
+        && docker-php-ext-install -j$(nproc) gd         
 
 # Get latest Composer   src="--from=composer:latest /usr/bin/composer"  dest="/usr/bin/composer"
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
