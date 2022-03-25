@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+    nginx:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./patterns:/var/www/patterns #see rootDir ./docker-conf/nginx.conf
+            - ./docker-conf/nginx.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - my-network
+    patterns_php:
+        #nginx listen   patterns_php:9000   
+        build:
+            args: 
+                - arg_user=bob 
+                - arg_uid=1000 
+                - arg_gid=1000
+            context: .
+            dockerfile: Dockerfile
+        container_name: patterns_php
+        image: patterns_php
+        volumes:
+            - ./patterns:/var/www/patterns
+            - ./docker-conf/docker-entrypoint.sh:/var/www/docker-entrypoint.sh
+        networks:
+            - my-network
+        entrypoint: /var/www/docker-entrypoint.sh
+        #docker-entrypoint.sh ==> cd /var/www/patterns && composer update  
+        #May be better: docker-compose exec patterns_php    composer install/update?  
+networks:
+    my-network:
+        driver: bridge
+ 
