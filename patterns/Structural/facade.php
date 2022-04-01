@@ -8,7 +8,7 @@ class iconsDownloader
     protected $saver;
     protected $url;
 
-    public function __construct(string $url)
+    public function __construct(string $url) 
     {
         $this->url = $url;
         $this->downloader = 'some object';
