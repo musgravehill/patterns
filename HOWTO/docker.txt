@@ -2,6 +2,14 @@ v install docker
 v install docker-compose
 V Manage Docker as a non-root user
 V Configure Docker to start on boot🔗
+
+
+GET terminal for container
+docker exec -it <container-name> /bin/bash
+docker exec -it <container-name> sh
+OR use VSCODE DOCKER->containers->nginx->files
+
+
  
 
 
