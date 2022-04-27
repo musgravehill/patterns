@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://hub.docker.com/r/macbre/sphinxsearch -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--mui-inject-first--><style data-jss="" data-meta="MuiCssBaseline">
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+strong, b {
+  font-weight: 600;
+}
+body {
+  color: #27343b;
+  margin: 0;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0;
+  background-color: #f7f7f8;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+body::backdrop {
+  background-color: #f7f7f8;
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+@media print {
+  .MuiButtonBase-root {
+    -webkit-print-color-adjust: exact;
+  }
+}
+</style><style data-jss="" data-meta="makeStyles">
+.jss34 {
+  border: 1px solid #d7dade;
+  padding: 28px;
+  background: white;
+  border-radius: 2px;
+}
+.jss35 {
+  display: flex;
+  flex-direction: column;
+}
+.jss36 {
+  position: relative;
+  margin-bottom: 24px;
+}
+.jss37 {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.jss37 > *:nth-child(2) {
+  margin-left: 8px;
+}
+.jss38 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.005em;
+}
+.jss39 {
+  flex-grow: 1;
+}
+.jss39 > p:first-child {
+  margin-top: 0;
+}
+.jss40 {
+  top: 0;
+  right: 0;
+  display: flex;
+  position: absolute;
+  align-items: center;
+}
+.jss40 > *:not(:last-child) {
+  margin-right: 16px;
+}
+.jss41:hover {
+  box-shadow: 0 2px 6px 0 #d7dade;
+}
+.jss42 {
+  width: 100%;
+}
+</style><style data-jss="" data-meta="MuiSvgIcon">
+.MuiSvgIcon-root {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+.MuiSvgIcon-colorPrimary {
+  color: #007bff;
+}
+.MuiSvgIcon-colorSecondary {
+  color: #f50057;
+}
+.MuiSvgIcon-colorAction {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiSvgIcon-colorError {
+  color: #d52536;
+}
+.MuiSvgIcon-colorDisabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
+}
+.MuiSvgIcon-fontSizeSmall {
+  font-size: 1.25rem;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 2.1875rem;
+}
+</style><style data-jss="" data-meta="MuiIconButton">
+.MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+.MuiIconButton-root:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.MuiIconButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: transparent;
+}
+@media (hover: none) {
+  .MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-edgeStart {
+  margin-left: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeStart {
+  margin-left: -3px;
+}
+.MuiIconButton-edgeEnd {
+  margin-right: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeEnd {
+  margin-right: -3px;
+}
+.MuiIconButton-colorInherit {
+  color: inherit;
+}
+.MuiIconButton-colorPrimary {
+  color: #007bff;
+}
+.MuiIconButton-colorPrimary:hover {
+  background-color: rgba(0, 123, 255, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-colorSecondary {
+  color: #f50057;
+}
+.MuiIconButton-colorSecondary:hover {
+  background-color: rgba(245, 0, 87, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-sizeSmall {
+  padding: 3px;
+  font-size: 1.125rem;
+}
+.MuiIconButton-label {
+  width: 100%;
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.jss1 {
+  left: 12px;
+  bottom: 12px;
+  opacity: 0.95;
+  padding: 10px 15px;
+  position: fixed;
+  box-shadow: 0px 1px 10px #b9c2c9;
+  border-radius: 3px;
+  background-color: #fff;
+}
+.jss2 {
+  display: flex;
+  min-width: 150px;
+  justify-content: space-between;
+}
+.jss3 {
+  color: #404d59;
+  font-weight: 500;
+}
+.jss4 {
+  width: 14px;
+  border: none;
+  cursor: pointer;
+  stroke: #5a6774;
+  display: inline-block;
+  padding: 0;
+  margin-top: 1px;
+  margin-left: 5px;
+  background-color: transparent;
+}
+.jss4:hover {
+  stroke: #007bff;
+}
+.jss5 {
+  display: none;
+}
+.jss6 {
+  padding-top: 4px;
+}
+.jss7 {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  padding-left: 36px;
+}
+.jss8 {
+  top: 6px;
+  left: 0;
+  width: 10px;
+  border: none;
+  cursor: pointer;
+  height: 10px;
+  padding: 0;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #a5b1ba;
+}
+.jss9 {
+  background-color: #54d1b0;
+}
+.jss10 {
+  background-color: #a5b1ba;
+}
+.jss11 {
+  top: 0;
+  left: 18px;
+  width: 9px;
+  border: none;
+  cursor: pointer;
+  height: 10px;
+  padding: 0;
+  position: absolute;
+  background: none;
+}
+.jss12 svg {
+  fill: #54d1b0;
+  stroke: #54d1b0;
+}
+.jss13 svg {
+  fill: #a5b1ba;
+  stroke: #a5b1ba;
+}
+</style>
+  <title>macbre/sphinxsearch - Docker Image | Docker Hub</title>
+  <!-- Google Font -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/css" rel="stylesheet">
+  <link href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/css(1)" rel="stylesheet">
+  <!-- Google Webmaster -->
+  <meta name="google-site-verification" content="uXQNygijkvw9KqUBVhYTJW7Gl1yBUOwdAiuhFCUGsz4">
+  <meta name="fragment" content="!">
+  
+  <!-- TrustArc updated snippet, load first to ensure Zero Tracker Load policies -->
+  <script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/e9e8497f-ca8a-426e-b0a1-a78247e85aa4.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/recaptcha__ru.js" crossorigin="anonymous" integrity="sha384-bhweElfCaT7QyBBjvUjgDsUNCuGhjvi7tYFewuZa4O+JW4YpMBHF70wUxglDM6rc"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/linkid.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/munchkin.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/analytics.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/wootric-sdk.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/analytics.min.js"></script><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/f.txt"></script><script async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/gtm.js"></script><script async="async" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/notice"></script>
+  
+  <script type="text/javascript">window.ASSET_PATH = 'https://d36jcksde1wxzq.cloudfront.net/';</script>
+  
+  <script type="text/javascript">var analyticsQueue = window.analyticsQueue || [];</script>
+  <!-- Optimizely -->
+  <script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/17888640141.js"></script>
+  <!-- Mouseflow: heatmap and recording tool -->
+  <script type="text/javascript" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/31c8bb38-cfeb-4bd8-a60c-d5650a6d6f23.js" async=""></script>
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WL2QLG5');</script>
+  
+  <link rel="stylesheet" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/main.01667d00cb82b7767179.css">
+<style>/**
+ * React Select
+ * ============
+ * Created by Jed Watson and Joss Mackison for KeystoneJS, http://www.keystonejs.com/
+ * https://twitter.com/jedwatson https://twitter.com/jossmackison https://twitter.com/keystonejs
+ * MIT License: https://github.com/JedWatson/react-select
+*/
+.Select {
+  position: relative;
+}
+.Select input::-webkit-contacts-auto-fill-button,
+.Select input::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+.Select input::-ms-clear {
+  display: none !important;
+}
+.Select input::-ms-reveal {
+  display: none !important;
+}
+.Select,
+.Select div,
+.Select input,
+.Select span {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Select.is-disabled .Select-arrow-zone {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.Select.is-disabled > .Select-control {
+  background-color: #f9f9f9;
+}
+.Select.is-disabled > .Select-control:hover {
+  box-shadow: none;
+}
+.Select.is-open > .Select-control {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #fff;
+  border-color: #b3b3b3 #ccc #d9d9d9;
+}
+.Select.is-open > .Select-control .Select-arrow {
+  top: -2px;
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+.Select.is-searchable.is-open > .Select-control {
+  cursor: text;
+}
+.Select.is-searchable.is-focused:not(.is-open) > .Select-control {
+  cursor: text;
+}
+.Select.is-focused > .Select-control {
+  background: #fff;
+}
+.Select.is-focused:not(.is-open) > .Select-control {
+  border-color: #007eff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+  background: #fff;
+}
+.Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
+  padding-right: 42px;
+}
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: #333;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  color: #007eff;
+  outline: none;
+  text-decoration: underline;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  background: #fff;
+}
+.Select.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select.is-open .Select-arrow,
+.Select .Select-arrow-zone:hover > .Select-arrow {
+  border-top-color: #666;
+}
+.Select.Select--rtl {
+  direction: rtl;
+  text-align: right;
+}
+.Select-control {
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.Select-control:hover {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.Select-control .Select-input:focus {
+  outline: none;
+  background: #fff;
+}
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  bottom: 0;
+  color: #aaa;
+  left: 0;
+  line-height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Select-input {
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.Select-input > input {
+  width: 100%;
+  background: none transparent;
+  border: 0 none;
+  box-shadow: none;
+  cursor: default;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  outline: none;
+  line-height: 17px;
+  /* For IE 8 compatibility */
+  padding: 8px 0 12px;
+  /* For IE 8 compatibility */
+  -webkit-appearance: none;
+}
+.is-focused .Select-input > input {
+  cursor: text;
+}
+.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select-control:not(.is-searchable) > .Select-input {
+  outline: none;
+}
+.Select-loading-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+}
+.Select-loading {
+  -webkit-animation: Select-animation-spin 400ms infinite linear;
+  -o-animation: Select-animation-spin 400ms infinite linear;
+  animation: Select-animation-spin 400ms infinite linear;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-right-color: #333;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.Select-clear-zone {
+  -webkit-animation: Select-animation-fadeIn 200ms;
+  -o-animation: Select-animation-fadeIn 200ms;
+  animation: Select-animation-fadeIn 200ms;
+  color: #999;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 17px;
+}
+.Select-clear-zone:hover {
+  color: #D0021B;
+}
+.Select-clear {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+}
+.Select--multi .Select-clear-zone {
+  width: 17px;
+}
+.Select-arrow-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 25px;
+  padding-right: 5px;
+}
+.Select--rtl .Select-arrow-zone {
+  padding-right: 0;
+  padding-left: 5px;
+}
+.Select-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 2.5px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: relative;
+}
+.Select-control > *:last-child {
+  padding-right: 5px;
+}
+.Select--multi .Select-multi-value-wrapper {
+  display: inline-block;
+}
+.Select .Select-aria-only {
+  position: absolute;
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  float: left;
+}
+@-webkit-keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Select-menu-outer {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-color: #e6e6e6;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.Select-menu {
+  max-height: 198px;
+  overflow-y: auto;
+}
+.Select-option {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #666666;
+  cursor: pointer;
+  display: block;
+  padding: 8px 10px;
+}
+.Select-option:last-child {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.Select-option.is-selected {
+  background-color: #f5faff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.04);
+  color: #333;
+}
+.Select-option.is-focused {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  color: #333;
+}
+.Select-option.is-disabled {
+  color: #cccccc;
+  cursor: default;
+}
+.Select-noresults {
+  box-sizing: border-box;
+  color: #999999;
+  cursor: default;
+  display: block;
+  padding: 8px 10px;
+}
+.Select--multi .Select-input {
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 0;
+}
+.Select--multi.Select--rtl .Select-input {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.Select--multi.has-value .Select-input {
+  margin-left: 5px;
+}
+.Select--multi .Select-value {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  border-radius: 2px;
+  border: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border: 1px solid rgba(0, 126, 255, 0.24);
+  color: #007eff;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-left: 5px;
+  margin-top: 5px;
+  vertical-align: top;
+}
+.Select--multi .Select-value-icon,
+.Select--multi .Select-value-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Select--multi .Select-value-label {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  cursor: default;
+  padding: 2px 5px;
+}
+.Select--multi a.Select-value-label {
+  color: #007eff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select--multi a.Select-value-label:hover {
+  text-decoration: underline;
+}
+.Select--multi .Select-value-icon {
+  cursor: pointer;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-right: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px 3px;
+}
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  background-color: #d8eafd;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 113, 230, 0.08);
+  color: #0071e6;
+}
+.Select--multi .Select-value-icon:active {
+  background-color: #c2e0ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.24);
+}
+.Select--multi.Select--rtl .Select-value {
+  margin-left: 0;
+  margin-right: 5px;
+}
+.Select--multi.Select--rtl .Select-value-icon {
+  border-right: none;
+  border-left: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-left: 1px solid rgba(0, 126, 255, 0.24);
+}
+.Select--multi.is-disabled .Select-value {
+  background-color: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  color: #333;
+}
+.Select--multi.is-disabled .Select-value-icon {
+  cursor: not-allowed;
+  border-right: 1px solid #e3e3e3;
+}
+.Select--multi.is-disabled .Select-value-icon:hover,
+.Select--multi.is-disabled .Select-value-icon:focus,
+.Select--multi.is-disabled .Select-value-icon:active {
+  background-color: #fcfcfc;
+}
+@keyframes Select-animation-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@-webkit-keyframes Select-animation-spin {
+  to {
+    -webkit-transform: rotate(1turn);
+  }
+}
+</style><script type="text/javascript" async="" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/munchkin(1).js"></script><script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/f(1).txt"></script><link rel="stylesheet" type="text/css" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/HomePageLoader.b76b16ba5f40d2eb393f.css"><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/HomePageLoader.b76b16ba5f40d2eb393f.js"></script><link rel="stylesheet" type="text/css" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/CommunityImageDetailWrapperPageLoader_ProfilesPageLoader_PublisherProfilePageLoader_Search.7cb33e4d90cef590e766.css"><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/CommunityImageDetailWrapperPageLoader_ProfilesPageLoader_PublisherProfilePageLoader_Search.7cb33e4d90cef590e766.js"></script><link rel="stylesheet" type="text/css" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/PublisherProfilePageLoader_Search.fc6da587f6809da0844b.css"><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/PublisherProfilePageLoader_Search.fc6da587f6809da0844b.js"></script><link rel="stylesheet" type="text/css" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/Search.9e21c70ccfa3ca5375db.css"><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/Search.9e21c70ccfa3ca5375db.js"></script><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/vendors_AdminPageLoader_BundleDetailWrapperPageLoader_CommunityImageDetailWrapperPageLoader_Fulfillm_08e3420a.e73aa487b5ff180e6cd3.js"></script><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/vendors_AdminPageLoader_CommunityImageDetailWrapperPageLoader_PartnerPageLoader_PublisherPageLoader.442783ae97c4d646d0e1.js"></script><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/vendors_CommunityImageDetailWrapperPageLoader_RepositoryPageLoader.5fc3c65fad0b404e655c.js"></script><link rel="stylesheet" type="text/css" href="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/CommunityImageDetailWrapperPageLoader.d94ea4bbdccf8a03e38d.css"><script charset="utf-8" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/CommunityImageDetailWrapperPageLoader.d94ea4bbdccf8a03e38d.js"></script></head>
+
+<body style="cursor: auto;">
+  <div id="app"><div><div class="styles__app___1o1RI" style="display: none;"><div id="announcement-bar" style="display: none;"></div><div class="styles__headerWrapper___O0ot8"><header class="styles__header___XehzL"><a id="homeButton" class="styles__headerLogo___2ZFL4 styles__logoLink___1D6_2" href="https://hub.docker.com/"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon   " viewBox="0 0 138 26" data-testid="svg_DockerHubIcon" style="width: 138px; height: 26px;"><g><g fill="#FFF" fill-rule="evenodd"><path d="M63.12 14.601c.292-.29.633-.519 1.023-.687.389-.168.806-.252 1.25-.252.402 0 .773.067 1.114.202.341.134.667.333.977.595.183.147.39.22.62.22.275 0 .501-.091.68-.275a.943.943 0 0 0 .27-.687.932.932 0 0 0-.329-.724c-.937-.83-2.048-1.245-3.332-1.245-1.412 0-2.617.5-3.615 1.502-.998 1.002-1.497 2.211-1.497 3.628 0 1.417.499 2.626 1.497 3.628.998 1.001 2.203 1.502 3.615 1.502 1.278 0 2.39-.415 3.332-1.245a.968.968 0 0 0 .302-.706.92.92 0 0 0-.95-.953 1.021 1.021 0 0 0-.602.202c-.305.263-.627.46-.968.591-.34.131-.712.197-1.114.197-.444 0-.861-.084-1.25-.252a3.199 3.199 0 0 1-1.963-2.964 3.194 3.194 0 0 1 .94-2.277zm15.771-2.267a1.055 1.055 0 0 0-.205-.307.893.893 0 0 0-.301-.206.951.951 0 0 0-.374-.073.926.926 0 0 0-.512.146l-5.46 3.564V8.312a.93.93 0 0 0-.278-.683.913.913 0 0 0-.67-.279.924.924 0 0 0-.68.28.929.929 0 0 0-.28.682v12.735c0 .262.093.488.28.678.185.189.412.283.68.283a.906.906 0 0 0 .67-.283.935.935 0 0 0 .279-.678v-3.308l1.114-.733 4.218 4.755a.88.88 0 0 0 .639.247.951.951 0 0 0 .374-.073.902.902 0 0 0 .301-.206c.085-.088.154-.19.205-.307a.885.885 0 0 0 .078-.367.97.97 0 0 0-.265-.668l-3.925-4.434 3.825-2.492c.244-.165.365-.418.365-.76a.887.887 0 0 0-.078-.367zm-21.838 5.785a3.255 3.255 0 0 1-1.702 1.718 3.08 3.08 0 0 1-1.251.257c-.45 0-.87-.086-1.26-.257a3.225 3.225 0 0 1-1.013-.691 3.284 3.284 0 0 1-.68-1.022 3.128 3.128 0 0 1-.252-1.246c0-.44.084-.855.251-1.246.168-.39.395-.731.68-1.022.286-.29.624-.52 1.014-.691.39-.171.81-.257 1.26-.257.444 0 .86.086 1.25.257a3.257 3.257 0 0 1 1.703 1.717c.168.388.251.802.251 1.242 0 .44-.083.854-.251 1.241zm.662-4.869c-1.01-1.002-2.215-1.502-3.615-1.502-1.412 0-2.617.5-3.615 1.502-.998 1.002-1.498 2.211-1.498 3.628 0 1.417.5 2.626 1.498 3.628.998 1.001 2.203 1.502 3.615 1.502 1.4 0 2.605-.5 3.615-1.502.998-.99 1.497-2.199 1.497-3.628a5.3 5.3 0 0 0-.379-1.97 5.031 5.031 0 0 0-1.118-1.658zm41.03-.861a1.797 1.797 0 0 0-.644-.39 3.775 3.775 0 0 0-.85-.197 7.268 7.268 0 0 0-.862-.054 4.97 4.97 0 0 0-1.716.293 5.234 5.234 0 0 0-1.489.842V12.7a.92.92 0 0 0-.278-.673.913.913 0 0 0-.671-.28.923.923 0 0 0-.68.28.92.92 0 0 0-.279.673v8.355a.92.92 0 0 0 .279.674c.185.186.412.28.68.28a.914.914 0 0 0 .671-.28.92.92 0 0 0 .278-.674v-4.177a3.232 3.232 0 0 1 .936-2.277c.29-.29.629-.519 1.018-.687.39-.168.807-.252 1.25-.252.451 0 .868.077 1.252.23.152.067.286.1.401.1a.95.95 0 0 0 .375-.073.89.89 0 0 0 .3-.207c.086-.088.154-.19.206-.306A.913.913 0 0 0 99 13.03a.853.853 0 0 0-.256-.641zm-16.708 3.536c.097-.336.247-.643.448-.92.2-.278.438-.516.711-.715.274-.199.576-.353.904-.463a3.175 3.175 0 0 1 2.023 0 3.279 3.279 0 0 1 1.606 1.177c.204.278.358.585.461.921h-6.153zm6.692-2.675c-1.01-1.002-2.216-1.502-3.615-1.502-1.412 0-2.618.5-3.616 1.502-.998 1.002-1.497 2.211-1.497 3.628 0 1.417.5 2.626 1.497 3.628.998 1.001 2.204 1.502 3.616 1.502 1.284 0 2.398-.415 3.341-1.245a.954.954 0 0 0 .274-.688.927.927 0 0 0-.27-.682.918.918 0 0 0-.68-.27.995.995 0 0 0-.63.238 3.011 3.011 0 0 1-.93.55 3.202 3.202 0 0 1-1.105.183c-.353 0-.693-.055-1.018-.165a3.28 3.28 0 0 1-.895-.463 3.197 3.197 0 0 1-1.164-1.635h7.23a.94.94 0 0 0 .959-.953c0-.708-.125-1.367-.374-1.974a4.991 4.991 0 0 0-1.123-1.654zm-42.988 4.87a3.245 3.245 0 0 1-1.703 1.718c-.389.17-.806.256-1.25.256-.45 0-.87-.086-1.26-.257a3.227 3.227 0 0 1-1.013-.691 3.272 3.272 0 0 1-.68-1.022 3.134 3.134 0 0 1-.251-1.246c0-.44.083-.855.25-1.246.168-.39.395-.731.68-1.022.287-.29.624-.52 1.014-.691.39-.171.81-.257 1.26-.257.444 0 .861.086 1.25.257a3.246 3.246 0 0 1 1.703 1.717c.168.388.251.802.251 1.242a3.1 3.1 0 0 1-.25 1.241zm1.2-10.77a.922.922 0 0 0-.949.953v4.571c-.925-.751-1.993-1.126-3.204-1.126-1.412 0-2.617.5-3.615 1.502-.999 1.002-1.497 2.211-1.497 3.628 0 1.417.498 2.626 1.497 3.628.998 1.001 2.203 1.502 3.615 1.502 1.4 0 2.605-.5 3.615-1.502.999-.99 1.498-2.199 1.498-3.628V8.303a.94.94 0 0 0-.959-.953zm-26.46 4.136h3.74V8.108h-3.74v3.378zm-4.419 0h3.74V8.108h-3.74v3.378zm-4.418 0h3.739V8.108h-3.74v3.378zm-4.42 0h3.74V8.108h-3.74v3.378zm-4.418 0h3.739V8.108H2.806v3.378zm4.419-4.054h3.739V4.054h-3.74v3.378zm4.419 0h3.739V4.054h-3.74v3.378zm4.418 0h3.74V4.054h-3.74v3.378zm0-4.054h3.74V0h-3.74v3.378zM31.32 9.046c-.186-1.352-.944-2.524-2.323-3.584l-.792-.525-.53.789C27 6.74 26.66 8.146 26.772 9.495c.05.474.207 1.323.698 2.069-.49.262-1.456.623-2.739.598H.14l-.049.282c-.23 1.355-.226 5.583 2.537 8.833C4.727 23.747 7.875 25 11.984 25c8.906 0 15.495-4.075 18.58-11.482 1.213.024 3.827.007 5.17-2.541.034-.058.115-.212.349-.695l.129-.264-.755-.501c-.817-.543-2.693-.742-4.137-.471z"></path><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5" font-family="Comfortaa" font-size="18" font-weight="bold"><text id="hub" fill="#FFFFFF"><tspan x="101" y="22">hub</tspan></text></g></g></g></svg></a><div class="styles__search___1gdRG"><div class="autocompleteSearchBar styles__wrapper____G5VL"><div class="autocompleteSearchWrapper styles__searchBarWrapper___2kZcu" style="display: inline-block;"><input class="autocompleteInput styles__input___19pbM styles__input___3Mx0R" data-testid="autocompleteInput" placeholder="Search for great content (e.g., mysql)" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" value="sphinxsearch"></div><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon autocompleteIcon styles__icon___2E1di styles__lightIcon___38PYC styles__small___3FOEa " viewBox="0 0 24 24" data-testid="svg_SearchIcon"><path d="M15.864 14.32h-.813l-.285-.277c1.008-1.174 1.615-2.696 1.615-4.354C16.38 5.993 13.384 3 9.69 3 5.994 3 3 5.995 3 9.69c0 3.694 2.995 6.688 6.69 6.688 1.656 0 3.18-.607 4.353-1.615l.277.287v.813L19.467 21 21 19.467l-5.136-5.147zm-6.175 0c-2.564 0-4.633-2.068-4.633-4.63s2.07-4.632 4.63-4.632 4.632 2.068 4.632 4.63-2.07 4.632-4.63 4.632z"></path></svg></div></div><nav class="styles__nav___1VPb7 styles__loggedOut___3IZqw"><a class="styles__navItem___CteOt" href="https://hub.docker.com/search">Explore</a><a id="pricingPlans" class="styles__navItem___CteOt" href="https://www.docker.com/pricing" target="_blank" rel="noopener noreferrer">Pricing</a><div id="log_in" class="styles__navItem___CteOt">Sign In</div><button class="dbutton styles__signUpButton___yf-Wn styles__button___349c4 styles__new___28c7_ styles__inverted___MX3NH styles__outlined___XFGp7">Register</button></nav></header></div><div id="mainContainer" class="styles__main___1pg40"><div style="width: 100%;"><div data-testid="page_community_image_detail"><div id="contextNav" class="styles__contextNav___2av_F"><div class="styles__container___Gjy1X utilities__wrapped___1Xpt6 styles__breadcrumbs___2AXNW"><div class="styles__breadcrumbs___3YifC"><div class="styles__breadcrumb___6kv6E"><a class="styles__breadcrumbLink___NJ94S" href="https://hub.docker.com/search">Explore</a></div><div class="styles__breadcrumb___6kv6E">macbre/sphinxsearch</div></div></div></div><div class="styles__wrapperContainer___2QLz1"><div class="styles__headerContainer___1pY7J wrapped"><div class="styles__avatarImageWrapper___3Tku7"><img class="styles__avatarImage___3jrU7" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/be7833db9bddb4494d2a7c3dd659199a.png" alt=""></div><div class="styles__headerText___29y0b"><div><div class="styles__repoAndStar___nMuyY"><h2 data-testid="repoName" class="styles__repoName___3O0sL">macbre/sphinxsearch</h2><div><div class="styles__starCount___PjVah styles__toggleStar___2Qlmf"><svg class="MuiSvgIcon-root styles__icon___4_It0" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"></path></svg></div></div></div></div><div class="styles__repoDetails___gvH94"><span class="">By <a class="styles__link___1kesa" href="https://hub.docker.com/u/macbre">macbre</a><span>&nbsp;•&nbsp;</span><span class="content">Updated 8 months ago</span></span></div><div class="styles__repoDetails___gvH94"><span class="">Sphinx is an open source full text search server</span>&nbsp;</div><div class="styles__chips___2P7C3"><div class="dChip styles__chip___3ZtYi"> Container</div></div></div><div class="styles__cta___3ckiH"><div class="styles__stats___2mlTc"><div class="styles__pullCount___2MIKx"><svg class="MuiSvgIcon-root styles__icon___2Jvs1" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg><span class="styles__pullText___24t9w">Pulls</span><span class="styles__pullNum___2TXDx">1M+</span></div></div></div></div><div class="styles__tabsSection___1Pcgc"><div class="wrapped"><div class="styles__tabs___1lGPf"><a class="styles__tab___2ShpZ styles__selected___30Doo" data-testid="overview" href="https://hub.docker.com/r/macbre/sphinxsearch">Overview</a><a class="styles__tab___2ShpZ" data-testid="tags" href="https://hub.docker.com/r/macbre/sphinxsearch/tags">Tags</a></div></div></div></div><div class="wrapped"><div class="styles__container___3dmfv"><div><div class="styles__columns___3Iaqy"><div><div class="jss34 styles__repoDescriptionCard___34skt jss35"><div class="jss39"><div data-testid="markdownContent" class="dMarkdown"><div class="styles__repoDescription___d_zn4"><h1>docker-sphinxsearch</h1>
+<p>Docker image for <a href="http://sphinxsearch.com/docs/sphinx3.html" rel="nofollow noopener">Sphinx search engine</a></p>
+<pre><code>docker pull macbre/sphinxsearch:latest</code></pre><p>or from GitHub Containers Registry:</p>
+<pre><code>docker pull ghcr.io/macbre/sphinxsearch:latest</code></pre><h2>Usage example</h2>
+<p>You can use this image in <code>docker-compose</code>-powered app:</p>
+<pre><code class="language-yaml">services:
+  sphinx:
+    image: macbre/sphinxsearch:3.4.1
+    ports:
+    - "127.0.0.1:36307:36307" # bind to local interface only!
+    volumes:
+    - ./data:/opt/sphinx/index  # directory where sphinx will store index data
+    - ./sphinx.conf:/opt/sphinx/conf/sphinx.conf  # SphinxSE configuration file
+    mem_limit: 512m # match indexer.value from sphinx.conf</code></pre>
+<ol>
+<li>First, execute <code>docker-compose run sphinx indexer --all</code> to prepare indices. Otherwise, you'd end up with <code>WARNING: index 'test1': prealloc: failed to open /opt/sphinx/index/test1.sph: No such file or directory; NOT SERVING</code> error.</li>
+<li>Then, execute <code>docker-compose up -d</code> to run sphinsearch daemon in the background.</li>
+</ol>
+<p>Read more at <a href="https://lukaszherok.com/post/view/9/Running%20SphinxSearch%20in%20Podman%20container" rel="nofollow noopener">https://lukaszherok.com/post/view/9/Running%20SphinxSearch%20in%20Podman%20container</a></p>
+<h2><a href="https://hub.docker.com/r/macbre/sphinxsearch/tags/">Tags available</a></h2>
+<h3><code>3.4.1</code>, <code>latest</code></h3>
+<pre><code>Sphinx 3.4.1 (commit efbcc658)
+Copyright (c) 2001-2021, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux alpine312 5.4.43-1-lts #2-Alpine SMP Thu, 28 May 2020 20:13:48 UTC x86_64 Linux
+Built with: gcc 9.3.0
+Build date: Jul  9 2021
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' '--with-unixodbc' 'CXXFLAGS=-DSPHINX_TAG= -DNDEBUG -O3 -g1 -D__MUSL__' 'LDFLAGS=-static-libstdc++ -static-libgcc'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic odbc-dynamic
+Versions: binlog_format v.8, index_format v.55, udf_api v.17
+Enabled dynamic drivers: mysql pgsql</code></pre><h3><code>3.3.1</code></h3>
+<pre><code>Sphinx 3.3.1 (commit b72d67bc)
+Copyright (c) 2001-2020, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux alpine312 5.4.43-1-lts #2-Alpine SMP Thu, 28 May 2020 20:13:48 UTC x86_64 Linux
+Built with: gcc 9.3.0
+Build date: Jul  6 2020
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' '--with-unixodbc' 'CXXFLAGS=-DSPHINX_TAG= -DNDEBUG -O3 -g1 -D__MUSL__' 'LDFLAGS=-static-libstdc++ -static-libgcc'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic odbc-dynamic
+Enabled dynamic drivers: mysql pgsql</code></pre><h3><code>3.2.1</code></h3>
+<pre><code>Sphinx 3.2.1 (commit f152e0b8)
+Copyright (c) 2001-2020, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux alpine38 4.14.69-0-vanilla #1-Alpine SMP Mon Sep 10 19:33:23 UTC 2018 x86_64 Linux
+Built with: gcc 6.4.0
+Build date: Jan 31 2020
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' '--with-unixodbc' 'CXXFLAGS=-DSPHINX_TAG= -DNDEBUG -O3 -g1 -D__MUSL__' 'LDFLAGS=-static-libstdc++ -static-libgcc'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic odbc-dynamic
+Enabled dynamic drivers: mysql pgsql</code></pre><h3><code>3.1.1</code></h3>
+<pre><code>Sphinx 3.1.1 (commit 612d99f4)
+Copyright (c) 2001-2018, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux alpine38 4.14.69-0-vanilla #1-Alpine SMP Mon Sep 10 19:33:23 UTC 2018 x86_64 Linux
+Built with: gcc 6.4.0
+Build date: Oct 17 2018
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' '--with-unixodbc' 'CXXFLAGS=-DSPHINX_TAG= -DNDEBUG -O3 -g1 -D__MUSL__' 'LDFLAGS=-static-libstdc++ -static-libgcc'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic odbc-dynamic
+Enabled dynamic drivers: mysql pgsql</code></pre><h3><code>3.0.3</code></h3>
+<pre><code>Sphinx 3.0.3 (commit facc3fb)
+Copyright (c) 2001-2018, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux ubuntu16 4.4.0-116-generic #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+Built with: gcc 5.4.0
+Build date: Mar 30 2018
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' '--with-unixodbc' 'CXXFLAGS=-DSPHINX_TAG= -DNDEBUG -O3 -g1' 'LDFLAGS=-static-libstdc++'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic odbc-dynamic
+Enabled dynamic drivers: mysql pgsql</code></pre><h3><code>3.0.1</code></h3>
+<pre><code>Sphinx 3.0.1 (commit 7fec4f6)
+Copyright (c) 2001-2017, Andrew Aksyonoff
+Copyright (c) 2008-2016, Sphinx Technologies Inc (http://sphinxsearch.com)
+
+Built on: Linux ubuntu16desktop 4.4.0-101-generic #124-Ubuntu SMP Fri Nov 10 18:29:59 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+Built with: gcc 5.4.0
+Build date: Dec 17 2017
+Build type: release
+Configure flags:  '--enable-dl' '--with-mysql' '--with-pgsql' 'CXXFLAGS=-DSPHINX_TAG= -g1' 'LDFLAGS=-static-libstdc++'
+Compiled DB drivers: mysql-dynamic pgsql-dynamic
+Enabled dynamic drivers: mysql pgsql</code></pre></div></div></div></div></div><div><div class="jss34 styles__cardSection___oLWjd styles__sideNavCard___22w91"><div class="styles__cardHeader___3lNcU ">Docker Pull Command</div><div class="styles__cardContents___24i6T"><div><div class="styles__code___1W7rB styles__copyable___2FDeL" role="button" tabindex="0" data-testid="copyButton"><input data-testid="copyPullCommandPullCommand" class="styles__darkInput___tirFS" readonly="" tabindex="-1" value="docker pull macbre/sphinxsearch"><button class="MuiButtonBase-root MuiIconButton-root styles__button___3F4OV" tabindex="-1" type="button"><span class="MuiIconButton-label"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root" focusable="false" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg></span></button></div></div></div></div><div class="jss34 styles__cardSection___oLWjd styles__sideNavCard___3nwTR"><div class="styles__cardHeader___3lNcU ">Source Repository</div><div class="styles__cardContents___24i6T"><div class="styles__wrapper___E8QJc"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__providerIcon___27x_2  " viewBox="2 2 20 20" style="width: 22px; height: 22px;"><path d="M12 2.4c-5.412 0-9.8 4.407-9.8 9.843 0 4.35 2.808 8.038 6.702 9.34.49.09.67-.214.67-.475 0-.233-.01-.853-.014-1.674-2.726.595-3.3-1.32-3.3-1.32-.447-1.137-1.09-1.44-1.09-1.44-.89-.61.068-.598.068-.598.983.07 1.5 1.016 1.5 1.016.875 1.504 2.295 1.068 2.853.816.088-.635.34-1.068.62-1.314-2.175-.25-4.463-1.094-4.463-4.865 0-1.075.382-1.955 1.01-2.642-.102-.25-.438-1.25.095-2.605 0 0 .823-.265 2.695 1.01.782-.22 1.62-.33 2.453-.333.833.004 1.67.113 2.453.332 1.87-1.273 2.693-1.01 2.693-1.01.534 1.355.197 2.357.098 2.606.628.688 1.007 1.567 1.007 2.64 0 3.782-2.29 4.614-4.473 4.858.352.303.664.904.664 1.822 0 1.315-.01 2.377-.01 2.7 0 .263.176.57.673.474 3.89-1.305 6.696-4.99 6.696-9.34C21.8 6.808 17.41 2.4 12 2.4z"></path></svg><div><div class="styles__provider___1HWw8">Github</div><a class="styles__repoUrl___3U490" data-testid="sourceRepository" href="https://www.github.com/macbre/docker-sphinxsearch" rel="noopener noreferrer" target="_blank">macbre/docker-sphinxsearch</a></div></div></div></div></div></div></div></div></div></div></div></div><footer class="styles__footerWrapper___1Rljn"><div class="styles__contentWrapper___1L_-i wrapped"><div class="styles__section___XuuIR"><div class="styles__linksMap___3rFFr"><div class="styles__column___1cl5g"><svg width="105px" height="28px" viewBox="0 0 105 28" fill="#007bff"><path fill-rule="evenodd" clip-rule="evenodd" d="M48.1826 20.3227C48.0019 20.7396 47.7561 21.1054 47.4449 21.42C47.1336 21.735 46.7676 21.9845 46.348 22.1681C45.9281 22.3521 45.4789 22.4439 45 22.4439C44.5145 22.4439 44.0622 22.3521 43.6422 22.1681C43.2223 21.9845 42.8584 21.7372 42.5508 21.4247C42.2424 21.1133 41.998 20.7479 41.8177 20.3281C41.6374 19.908 41.5471 19.4616 41.5471 18.9893C41.5471 18.517 41.6374 18.0709 41.8177 17.6508C41.998 17.2314 42.2424 16.8653 42.5508 16.5532C42.8584 16.2425 43.2223 15.9945 43.6422 15.8105C44.0622 15.6273 44.5145 15.5351 45 15.5351C45.4789 15.5351 45.9281 15.6273 46.348 15.8105C46.7676 15.9945 47.1336 16.2439 47.4449 16.5586C47.7561 16.8736 48.0019 17.239 48.1826 17.6562C48.3629 18.0727 48.4532 18.517 48.4532 18.9893C48.4532 19.4616 48.3629 19.9066 48.1826 20.3227ZM49.4763 8.75415C49.1812 8.75415 48.9365 8.85135 48.7432 9.04467C48.5496 9.23871 48.4532 9.48279 48.4532 9.77763V14.6887C47.456 13.8813 46.3052 13.4784 45 13.4784C43.4785 13.4784 42.1797 14.0159 41.1045 15.0923C40.0285 16.1687 39.4912 17.4672 39.4912 18.9893C39.4912 20.5114 40.0285 21.8106 41.1045 22.8867C42.1797 23.9627 43.4785 24.5002 45 24.5002C46.5082 24.5002 47.8069 23.9627 48.8958 22.8867C49.9715 21.8236 50.5091 20.5243 50.5091 18.9893V9.77763C50.5091 9.48279 50.4091 9.23871 50.2093 9.04467C50.0089 8.85135 49.7649 8.75415 49.4763 8.75415Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M60.2678 20.3226C60.0871 20.7395 59.8406 21.1052 59.5293 21.4199C59.2181 21.7349 58.8521 21.9844 58.4328 22.168C58.0129 22.3519 57.5638 22.4437 57.0848 22.4437C56.5994 22.4437 56.147 22.3519 55.7278 22.168C55.3078 21.9844 54.9436 21.737 54.6352 21.4246C54.3268 21.1132 54.0828 20.7478 53.9022 20.328C53.7219 19.9079 53.6316 19.4615 53.6316 18.9892C53.6316 18.5168 53.7219 18.0708 53.9022 17.6507C54.0828 17.2313 54.3268 16.8652 54.6352 16.553C54.9436 16.2424 55.3078 15.9943 55.7278 15.8104C56.147 15.6271 56.5994 15.535 57.0848 15.535C57.5638 15.535 58.0129 15.6271 58.4328 15.8104C58.8521 15.9943 59.2181 16.2438 59.5293 16.5584C59.8406 16.8734 60.0871 17.2388 60.2678 17.6561C60.4477 18.0726 60.5377 18.5168 60.5377 18.9892C60.5377 19.4615 60.4477 19.9064 60.2678 20.3226ZM60.9803 15.0922C59.8917 14.0158 58.593 13.4783 57.0848 13.4783C55.563 13.4783 54.2646 14.0158 53.1893 15.0922C52.1137 16.1686 51.5757 17.4671 51.5757 18.9892C51.5757 20.5112 52.1137 21.8105 53.1893 22.8865C54.2646 23.9626 55.563 24.5 57.0848 24.5C58.593 24.5 59.8917 23.9626 60.9803 22.8865C62.0559 21.8234 62.5943 20.5242 62.5943 18.9892C62.5871 18.2281 62.4511 17.5232 62.1858 16.8734C61.9203 16.224 61.5183 15.6304 60.9803 15.0922Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M83.7575 14.5015C83.7575 14.3637 83.7302 14.233 83.6744 14.1081C83.6183 13.9835 83.5448 13.8737 83.4527 13.7783C83.361 13.6836 83.2526 13.6098 83.1281 13.5565C83.0036 13.5043 82.8687 13.4784 82.7247 13.4784C82.5214 13.4784 82.3379 13.531 82.1741 13.6357L76.2915 17.464V9.78771C76.2915 9.49899 76.1911 9.25491 75.991 9.05439C75.7913 8.85459 75.5502 8.75415 75.2677 8.75415C74.9791 8.75415 74.7351 8.85459 74.5353 9.05439C74.3353 9.25491 74.2349 9.49899 74.2349 9.78771V23.467C74.2349 23.7492 74.3353 23.9922 74.5353 24.1953C74.7351 24.3987 74.9791 24.5002 75.2677 24.5002C75.5502 24.5002 75.7913 24.3987 75.991 24.1953C76.1911 23.9922 76.2915 23.7492 76.2915 23.467V19.9141L77.4916 19.1275L82.0367 24.2349C82.2198 24.412 82.4494 24.5002 82.7247 24.5002C82.8687 24.5002 83.0036 24.4743 83.1281 24.4217C83.2526 24.3695 83.361 24.2957 83.4527 24.2003C83.5448 24.1056 83.6183 23.9951 83.6744 23.8705C83.7302 23.7467 83.7575 23.6142 83.7575 23.4771C83.7575 23.2085 83.6622 22.9687 83.4725 22.7581L79.2423 17.9953L83.3642 15.3184C83.6265 15.1409 83.7575 14.8695 83.7575 14.5015Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M66.6904 16.5437C67.0049 16.2323 67.3723 15.986 67.7923 15.8057C68.2123 15.6253 68.6614 15.535 69.1403 15.535C69.5729 15.535 69.9723 15.6073 70.3405 15.7513C70.7068 15.896 71.0584 16.1095 71.3927 16.391C71.5896 16.5484 71.8127 16.6272 72.0617 16.6272C72.3568 16.6272 72.6008 16.5289 72.7944 16.332C72.9876 16.1351 73.0852 15.8888 73.0852 15.594C73.0852 15.2858 72.9668 15.0266 72.7307 14.8164C71.7206 13.9243 70.524 13.4783 69.1403 13.4783C67.6181 13.4783 66.3194 14.0158 65.2445 15.0922C64.1689 16.1686 63.6309 17.4671 63.6309 18.9892C63.6309 20.5112 64.1689 21.8105 65.2445 22.8865C66.3194 23.9626 67.6181 24.5 69.1403 24.5C70.5172 24.5 71.7141 24.054 72.7307 23.1619C72.947 22.9452 73.0553 22.6932 73.0553 22.4041C73.0553 22.1089 72.9581 21.8645 72.7652 21.6708C72.5716 21.4775 72.3269 21.3803 72.0322 21.3803C71.7832 21.3871 71.5665 21.4591 71.3826 21.597C71.0552 21.8792 70.7068 22.0909 70.3405 22.232C69.9723 22.3728 69.5729 22.4437 69.1403 22.4437C68.6614 22.4437 68.2123 22.353 67.7923 22.173C67.3723 21.9926 67.0049 21.7464 66.6904 21.435C66.3752 21.1232 66.1279 20.7575 65.9477 20.3374C65.7674 19.9176 65.677 19.4683 65.677 18.9892C65.677 18.5107 65.7674 18.0607 65.9477 17.6406C66.1279 17.2212 66.3752 16.8554 66.6904 16.5437Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M104.192 14.1666C104.008 13.9898 103.777 13.8505 103.499 13.7483C103.22 13.6471 102.915 13.5762 102.584 13.5366C102.253 13.4974 101.942 13.4783 101.654 13.4783C100.998 13.4783 100.381 13.583 99.8044 13.7929C99.2272 14.0032 98.6932 14.3045 98.2009 14.6987V14.5014C98.2009 14.2199 98.1012 13.9783 97.9008 13.7782C97.7011 13.578 97.4592 13.4783 97.1778 13.4783C96.8889 13.4783 96.6452 13.578 96.4448 13.7782C96.2451 13.9783 96.145 14.2199 96.145 14.5014V23.4769C96.145 23.7592 96.2451 24 96.4448 24.2002C96.6452 24.4003 96.8889 24.5 97.1778 24.5C97.4592 24.5 97.7011 24.4003 97.9008 24.2002C98.1012 24 98.2009 23.7592 98.2009 23.4769V18.9892C98.2009 18.5107 98.2916 18.0607 98.4715 17.6406C98.6518 17.2212 98.8976 16.8554 99.2092 16.5437C99.5209 16.2323 99.8861 15.986 100.306 15.8057C100.725 15.6253 101.175 15.535 101.654 15.535C102.139 15.535 102.588 15.617 103.002 15.7812C103.166 15.8532 103.31 15.8888 103.435 15.8888C103.578 15.8888 103.713 15.8633 103.838 15.8104C103.962 15.7578 104.071 15.6844 104.162 15.589C104.254 15.4943 104.328 15.3841 104.384 15.2588C104.44 15.135 104.468 15.0004 104.468 14.8556C104.468 14.5738 104.375 14.3437 104.192 14.1666Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M86.2107 17.9789C86.3154 17.6185 86.4766 17.2891 86.6925 16.9899C86.9092 16.6919 87.1647 16.4355 87.4601 16.2221C87.7552 16.0097 88.0802 15.8437 88.4339 15.7249C88.788 15.6075 89.1518 15.5485 89.5257 15.5485C89.8996 15.5485 90.2616 15.6075 90.6125 15.7249C90.9637 15.8437 91.2851 16.0097 91.5766 16.2221C91.8684 16.4355 92.1246 16.6919 92.3438 16.9899C92.5644 17.2891 92.7296 17.6185 92.8411 17.9789H86.2107ZM94.6314 16.8816C94.3622 16.2293 93.9588 15.6367 93.4219 15.1053C92.3323 14.0293 91.0339 13.4915 89.5257 13.4915C88.0042 13.4915 86.7055 14.0293 85.6302 15.1053C84.5542 16.1821 84.0166 17.4803 84.0166 19.0027C84.0166 20.5248 84.5542 21.824 85.6302 22.9001C86.7055 23.9757 88.0042 24.5139 89.5257 24.5139C90.9094 24.5139 92.1095 24.0675 93.1265 23.1755C93.1405 23.1625 93.1635 23.1416 93.1671 23.138C93.2564 23.0635 93.332 22.9836 93.3989 22.8831C93.7267 22.3932 93.6098 21.7394 93.1369 21.4226C92.7382 21.1551 92.2168 21.2163 91.8659 21.5357C91.8328 21.5659 91.7363 21.6559 91.7198 21.6696C91.7148 21.6735 91.7104 21.6779 91.7054 21.6818C91.4006 21.9381 91.0706 22.1311 90.7161 22.26C90.3548 22.3914 89.959 22.4573 89.5257 22.4573C89.145 22.4573 88.7797 22.3982 88.4285 22.2794C88.0784 22.1613 87.7563 21.9961 87.4648 21.783C87.1729 21.5699 86.9189 21.3143 86.7026 21.0151C86.486 20.717 86.3215 20.3873 86.2107 20.0262H94.002C94.2899 20.0262 94.5343 19.9293 94.7343 19.7357C94.9348 19.5423 95.0348 19.2975 95.0348 19.0027C95.0348 18.242 94.8999 17.535 94.6314 16.8816Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M100.681 24.2849C100.362 24.2849 100.129 24.0343 100.129 23.719C100.129 23.4083 100.362 23.1538 100.677 23.1538C100.992 23.1538 101.221 23.4083 101.221 23.7237C101.221 24.0343 100.992 24.2849 100.681 24.2849ZM100.677 23.0112C100.272 23.0112 99.9478 23.3266 99.9478 23.719C99.9478 24.1211 100.272 24.4361 100.677 24.4361C101.087 24.4361 101.402 24.1211 101.402 23.719C101.402 23.3266 101.087 23.0112 100.677 23.0112Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M100.647 23.6889H100.569V23.4859C100.587 23.4816 100.617 23.4776 100.66 23.4776C100.764 23.4776 100.811 23.5208 100.811 23.5852C100.811 23.6587 100.738 23.6889 100.647 23.6889ZM100.841 23.7408V23.7321C100.927 23.7062 100.988 23.6457 100.988 23.568C100.988 23.4988 100.958 23.4427 100.919 23.4128C100.867 23.3826 100.807 23.3606 100.673 23.3606C100.556 23.3606 100.466 23.3696 100.401 23.3826V24.0907H100.565V23.8056H100.643C100.733 23.8056 100.777 23.8398 100.789 23.9175C100.811 24 100.824 24.0644 100.845 24.0907H101.023C101.005 24.0644 100.992 24.0212 100.971 23.9132C100.949 23.8185 100.91 23.7667 100.841 23.7408Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M37.605 11.0652C37.5039 10.9835 36.5589 10.2707 34.5678 10.2707C34.0697 10.2707 33.5443 10.3161 32.9984 10.4057C32.6137 7.76296 30.433 6.4756 30.3315 6.41728L29.7964 6.1084L29.4437 6.61636C29.4174 6.65416 28.7978 7.55632 28.4937 8.84044C28.1367 10.3485 28.3533 11.7644 29.1195 12.9765C28.1943 13.4913 26.7174 13.6256 26.4108 13.6295H1.84593C1.20501 13.6295 0.681415 14.1504 0.678896 14.7909C0.66918 17.051 1.04164 19.2351 1.7556 21.1067C2.60236 23.3265 3.86187 24.9605 5.49852 25.9638C7.33418 27.0885 10.3228 27.7336 13.6976 27.7336C15.2767 27.7336 16.8507 27.591 18.2491 27.321C20.4529 26.8962 22.4538 26.1694 24.1955 25.1618C25.7145 24.283 27.0787 23.1652 28.2504 21.8404C30.1969 19.6379 31.3564 17.178 32.2186 15.0011C32.3348 15.0058 32.4493 15.008 32.5623 15.008C34.693 15.008 36.0033 14.1562 36.7269 13.4412C37.5118 12.6658 37.7911 11.8929 37.8202 11.8072L37.9728 11.3604L37.605 11.0652Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.12272 12.911H7.41474C7.57344 12.911 7.70263 12.7821 7.70263 12.6226V9.68899C7.70263 9.52951 7.57344 9.40063 7.41474 9.40063H4.12272C3.96366 9.40063 3.83447 9.52951 3.83447 9.68899V12.6226C3.83447 12.7821 3.96366 12.911 4.12272 12.911Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.65934 12.911H11.9506C12.1101 12.911 12.2389 12.7821 12.2389 12.6226V9.68899C12.2389 9.52951 12.1101 9.40063 11.9506 9.40063H8.65934C8.49992 9.40063 8.37109 9.52951 8.37109 9.68899V12.6226C8.37109 12.7821 8.49992 12.911 8.65934 12.911Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2649 12.911H16.5566C16.7157 12.911 16.8448 12.7821 16.8448 12.6226V9.68899C16.8448 9.52951 16.7157 9.40063 16.5566 9.40063H13.2649C13.1059 9.40063 12.9771 9.52951 12.9771 9.68899V12.6226C12.9771 12.7821 13.1059 12.911 13.2649 12.911Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.8166 12.911H21.1082C21.2676 12.911 21.3965 12.7821 21.3965 12.6226V9.68899C21.3965 9.52951 21.2676 9.40063 21.1082 9.40063H17.8166C17.6579 9.40063 17.5283 9.52951 17.5283 9.68899V12.6226C17.5283 12.7821 17.6579 12.911 17.8166 12.911Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.65934 8.6898H11.9506C12.1101 8.6898 12.2389 8.56092 12.2389 8.4018V5.4678C12.2389 5.30868 12.1101 5.17944 11.9506 5.17944H8.65934C8.49992 5.17944 8.37109 5.30868 8.37109 5.4678V8.4018C8.37109 8.56092 8.49992 8.6898 8.65934 8.6898Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2649 8.6898H16.5566C16.7157 8.6898 16.8448 8.56092 16.8448 8.4018V5.4678C16.8448 5.30868 16.7157 5.17944 16.5566 5.17944H13.2649C13.1059 5.17944 12.9771 5.30868 12.9771 5.4678V8.4018C12.9771 8.56092 13.1059 8.6898 13.2649 8.6898Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.8166 8.6898H21.1082C21.2676 8.6898 21.3965 8.56092 21.3965 8.4018V5.4678C21.3965 5.30868 21.2676 5.17944 21.1082 5.17944H17.8166C17.6579 5.17944 17.5283 5.30868 17.5283 5.4678V8.4018C17.5283 8.56092 17.6579 8.6898 17.8166 8.6898Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M17.8166 4.46861H21.1082C21.2676 4.46861 21.3965 4.33937 21.3965 4.18025V1.24661C21.3965 1.08713 21.2676 0.958252 21.1082 0.958252H17.8166C17.6579 0.958252 17.5283 1.08713 17.5283 1.24661V4.18025C17.5283 4.33937 17.6579 4.46861 17.8166 4.46861Z" fill="#007bff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M22.4079 12.911H25.6992C25.8586 12.911 25.9874 12.7821 25.9874 12.6226V9.68899C25.9874 9.52951 25.8586 9.40063 25.6992 9.40063H22.4079C22.2485 9.40063 22.1196 9.52951 22.1196 9.68899V12.6226C22.1196 12.7821 22.2485 12.911 22.4079 12.911Z" fill="#007bff"></path></svg></div><div class="styles__column___1cl5g"><div class="styles__listTitle___R9nW5">Why Docker</div><a data-testid="whyLink" href="https://www.docker.com/why-docker" target="_blank" rel="noopener noreferrer">Overview</a><a data-testid="whatIsAContainerLink" href="https://www.docker.com/resources/what-container" target="_blank" rel="noopener noreferrer">What is a Container</a></div><div class="styles__column___1cl5g"><div class="styles__listTitle___R9nW5">Products</div><a data-testid="productOverviewLink" href="https://www.docker.com/products" target="_blank" rel="noopener noreferrer">Product Overview</a><div class="styles__subTitle___1dG4B">Product Offerings</div><a data-testid="desktopLink" href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener noreferrer">Docker Desktop</a><a data-testid="dockerHubLink" href="https://www.docker.com/products/docker-hub" target="_blank" rel="noopener noreferrer">Docker Hub</a><div class="styles__subTitle___1dG4B">Features</div><a data-testid="containerRuntimeLink" href="https://www.docker.com/products/container-runtime" target="_blank" rel="noopener noreferrer">Container Runtime</a><a data-testid="developerToolsLink" href="https://www.docker.com/products/developer-tools" target="_blank" rel="noopener noreferrer">Developer Tools</a><a data-testid="appLink" href="https://www.docker.com/products/docker-app" target="_blank" rel="noopener noreferrer">Docker App</a><a data-testid="kubernetesLink" href="https://www.docker.com/products/kubernetes" target="_blank" rel="noopener noreferrer">Kubernetes</a></div><div class="styles__column___1cl5g"><div class="styles__listTitle___R9nW5">Developers</div><a data-testid="gettingStartedLink" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener noreferrer">Getting Started</a><a data-testid="playLink" href="https://www.docker.com/play-with-docker" target="_blank" rel="noopener noreferrer">Play with Docker</a><a data-testid="communityLink" href="https://www.docker.com/docker-community" target="_blank" rel="noopener noreferrer">Community</a><a data-testid="openSourceLink" href="https://www.docker.com/open-source" target="_blank" rel="noopener noreferrer">Open Source</a><a data-testid="documentationLink" href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">Docs</a><a data-testid="releaseNotesLink" href="https://docs.docker.com/docker-hub/release-notes/" target="_blank" rel="noopener noreferrer">Hub Release Notes</a></div><div class="styles__column___1cl5g"><div class="styles__listTitle___R9nW5">Company</div><a data-testid="aboutUsLink" href="https://www.docker.com/company" target="_blank" rel="noopener noreferrer">About Us</a><a data-testid="contentLibraryLink" href="https://www.docker.com/resources" target="_blank" rel="noopener noreferrer">Resources</a><a data-testid="blogLink" href="https://www.docker.com/blog/" target="_blank" rel="noopener noreferrer">Blog</a><a data-testid="caseStudiesLink" href="https://www.docker.com/customers" target="_blank" rel="noopener noreferrer">Customers</a><a data-testid="partnersLink" href="https://www.docker.com/partners" target="_blank" rel="noopener noreferrer">Partners</a><a data-testid="newsroomLink" href="https://www.docker.com/company/newsroom" target="_blank" rel="noopener noreferrer">Newsroom</a><a data-testid="eventsLink" href="https://www.docker.com/events-and-webinars" target="_blank" rel="noopener noreferrer">Events and Webinars</a><a data-testid="careersLink" href="https://www.docker.com/careers" target="_blank" rel="noopener noreferrer">Careers</a><a data-testid="feedbackLink" href="https://www.docker.com/company/contact" target="_blank" rel="noopener noreferrer">Contact Us</a></div></div></div><div class="styles__section___XuuIR" style="padding-bottom: 20px;"><div class="styles__copyright___11bRD">© 2022 Docker Inc. All rights reserved | <a href="https://www.docker.com/legal/docker-terms-service" target="_blank" rel="noopener noreferrer">Terms of Service</a> | <a href="https://www.docker.com/legal/docker-subscription-service-agreement" target="_blank" rel="noopener noreferrer">Subscription Service Agreement</a> | <a href="https://www.docker.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy</a> | <a href="https://www.docker.com/legal" target="_blank" rel="noopener noreferrer">Legal</a></div><div class="styles__socialLinks___2Dlcm"><a href="https://www.facebook.com/docker.run" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__icon___32Su8  " viewBox="0 0 22 22" style="width: 22px; height: 22px;"><path d="M7.31471 23H2.43724V11.4985H0V7.53553H2.43724V5.15627C2.43724 1.92344 3.81271 0 7.72302 0H10.9776V3.96447H8.94351C7.42126 3.96447 7.32067 4.51827 7.32067 5.55185L7.31396 7.53553H11L10.5686 11.4985H7.31396V23H7.31471Z"></path></svg></a><a href="https://twitter.com/docker" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__icon___32Su8  " viewBox="0 0 21 18" style="width: 22px; height: 22px;"><path d="M18.5261 2.84573C19.4161 2.28413 20.099 1.39362 20.4194 0.332804C19.5862 0.854109 18.6654 1.23111 17.683 1.43522C16.8991 0.551206 15.7787 0 14.5387 0C12.1597 0 10.2319 2.03452 10.2319 4.54355C10.2319 4.89975 10.2677 5.24686 10.3416 5.57836C6.76211 5.38856 3.58813 3.58154 1.46188 0.830709C1.09086 1.50412 0.878852 2.28413 0.878852 3.11613C0.878852 4.69175 1.63937 6.08277 2.79556 6.89918C2.08928 6.87578 1.4249 6.66907 0.843106 6.33107V6.38697C0.843106 8.5892 2.32717 10.4261 4.30058 10.8421C3.93819 10.9487 3.55855 11.002 3.16411 11.002C2.88678 11.002 2.6156 10.9747 2.35429 10.9214C2.90157 12.7258 4.49287 14.0415 6.37876 14.0766C4.90333 15.296 3.04578 16.0214 1.028 16.0214C0.680401 16.0214 0.336503 16.0019 0 15.959C1.90685 17.2473 4.17116 18 6.60433 18C14.53 18 18.8614 11.0761 18.8614 5.07136C18.8614 4.87375 18.859 4.67745 18.8503 4.48375C19.6922 3.84284 20.4244 3.04203 21 2.13072C20.2272 2.49213 19.3964 2.73653 18.5261 2.84573Z"></path></svg></a><a href="https://www.youtube.com/user/dockerrun" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__icon___32Su8  " viewBox="0 0 20 14" style="width: 22px; height: 22px;"><path d="M20 10.5642V3.43582C20 3.43582 20 0 16.5534 0H3.44544C3.44544 0 0 0 0 3.43582V10.5642C0 10.5642 0 14 3.44544 14H16.5534C16.5534 14 20 14 20 10.5642V10.5642ZM13.883 7.00998L7.33545 10.8432V3.1756L13.883 7.00998V7.00998Z"></path></svg></a><a href="https://www.linkedin.com/company/docker" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__icon___32Su8  " viewBox="0 0 22 22" style="width: 22px; height: 22px;"><path d="M0.504395 6.41312H4.40256V19.9987H0.504395V6.41312ZM2.35419 4.71379H2.32596C0.914864 4.71379 0 3.67525 0 2.3601C0 1.01806 0.94191 0 2.38123 0C3.81938 0 4.70367 1.01549 4.73189 2.35626C4.73189 3.6714 3.81938 4.71379 2.35419 4.71379V4.71379ZM20 20H15.5798V12.9684C15.5798 11.1282 14.8883 9.87323 13.3679 9.87323C12.2049 9.87323 11.5581 10.7197 11.2571 11.538C11.1442 11.8299 11.1618 12.2384 11.1618 12.6482V20H6.78271C6.78271 20 6.83916 7.54515 6.78271 6.41312H11.1618V8.54527C11.4205 7.61302 12.8199 6.2825 15.0529 6.2825C17.8234 6.2825 20 8.23794 20 12.4446V20V20Z"></path></svg></a><a href="https://blog.docker.com/feed" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" class="dicon styles__icon___32Su8  " viewBox="0 0 22 22" style="width: 22px; height: 22px;"><path d="M0.0078125 0V3.62618C8.47447 3.63176 15.3559 10.5255 15.3638 19H19C18.9978 13.7629 16.8685 9.0174 13.4278 5.57444C9.98706 2.13258 5.24376 0.00223424 0.0078125 0V0ZM0.00244141 6.46143V10.0887C2.36962 10.0898 4.61168 11.0204 6.28625 12.6994C7.96417 14.374 8.88914 16.6172 8.89361 18.9933V19H12.5388C12.5354 15.5436 11.1301 12.4134 8.85898 10.1412C6.58787 7.869 3.4577 6.46254 0.00244141 6.46143V6.46143ZM0.739398 18.2403V18.2392C0.738281 18.2392 0.738281 18.2392 0.738281 18.2392L0.739398 18.2403V18.2403ZM4.30539 14.6868C4.76676 15.1471 5.04715 15.7704 5.04827 16.4653C5.04715 17.1579 4.76676 17.7823 4.30762 18.2392L4.30539 18.2404C3.84737 18.6973 3.21954 18.9777 2.52246 18.9777C1.82426 18.9777 1.19867 18.6961 0.739534 18.2392C0.282632 17.7823 0 17.159 0 16.4653C0 15.7704 0.282632 15.1459 0.739534 14.6868C1.19867 14.2299 1.82426 13.9473 2.52246 13.9473C3.21954 13.9473 3.84737 14.2299 4.30539 14.6868V14.6868Z"></path></svg></a></div></div><div class="styles__section___XuuIR" style="padding-top: 0px;"><div id="teconsent"></div></div></div></footer><div><div id="consent_blackbar"></div></div></div></div><div id="Tooltip_container_0s98f" class="bootstrap_white__tooltipContainer___111Zb styles__tooltipContainer___2FgdK"></div></div>
+  <script>
+    window.dockerVars = {
+      bugsnagApiKey: 'aebb7f3442de072b3209127919cf37c0',
+      environment: 'production',
+      appVersion: '1394.0.0'
+    };
+    window.recaptchaOptions = {
+      useRecaptchaNet: true
+    };
+  </script>
+  <script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/bugsnag.3765269a70731ed64bf1.js"></script>
+  <script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/vendor.2a02379329ab6f5cff3d.js"></script>
+  <script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/main.01667d00cb82b7767179.js"></script><iframe src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/a14166430330.html" hidden="" tabindex="-1" title="Optimizely Internal Frame" height="0" width="0" style="display: none;"></iframe>
+
+
+
+
+<script type="text/javascript" id="">(function(){function b(){!1===c&&(c=!0,Munchkin.init("790-SSB-375"))}var c=!1,a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="//munchkin.marketo.net/munchkin.js";a.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||b()};a.onload=b;document.getElementsByTagName("head")[0].appendChild(a)})();</script><script type="text/javascript" id="">var _analytics=_analytics||{};
+(function(){function r(){var b=new Date,a=b.getTimezoneOffset(),c=b;b=new Date(c.getFullYear(),0,1);c=new Date(c.getFullYear(),6,1);b=Math.max(b.getTimezoneOffset(),c.getTimezoneOffset());return a<b}this.dataChannel=this.dataChannel||{};this.dataChannel.publishEvent=this.dataChannel.publishEvent||function(b,a){a=a||{};a.event=b;window.dataLayer&&dataLayer.push(a)};this.trackPageView=function(b,a){a=a||{};var c=google_tag_manager["GTM-WL2QLG5"].macro(4);c=this.getTimestamp(c);var d=google_tag_manager["GTM-WL2QLG5"].macro(5);d&&window.analytics&&
+(b={hit_timestamp:c,title:a.title,path:b,url:window.location.href},Object.assign(b,this.contentGroups,this.pageDimensions,this.pageMetrics,a.dimensions,a.metrics),analytics.page(b))};this.trackEvent=function(b,a,c,d){d=d||{};var f=google_tag_manager["GTM-WL2QLG5"].macro(6);f=this.getTimestamp(f);var e=google_tag_manager["GTM-WL2QLG5"].macro(7);e&&window.analytics&&(b={hit_timestamp:f,category:b,label:c,value:"undefined"!=typeof d.value?Math.round(d.value):void 0,nonInteraction:d.nonInteraction},Object.assign(b,this.contentGroups,this.pageDimensions,
+this.pageMetrics,d.dimensions,d.metrics),analytics.track(a,b))};this.contentGroups={};this.setContentGroup=function(b,a){"undefined"!=typeof b&&(this.contentGroups[b]=a)};this.contentGroups={};this.setContentGroup=function(b,a){"undefined"!=typeof b&&(isNaN(parseInt(b))?this.contentGroups[b]=a:this.contentGroups["content_group"+b]=a)};this.pageDimensions={};this.setDimension=function(b,a){"undefined"!=typeof b&&(this.pageDimensions[b]=a)};this.pageMetrics={};this.setMetric=function(b,a){"undefined"!=
+typeof b&&(this.pageMetrics[b]=a)};this.getCookie=function(b){var a=document.cookie,c=a.indexOf(" "+b+"\x3d");-1==c&&(c=a.indexOf(b+"\x3d"),1<c&&(c=-1));-1==c?a=null:(c=a.indexOf("\x3d",c)+1,b=a.indexOf(";",c),-1==b&&(b=a.length),a=unescape(a.substring(c,b)));return a};this.setCookie=function(b,a,c){function d(h){23<h?(e.setDate(e.getDate()+1),e.setHours(h%23)):e.setHours(h)}function f(h){59<h?(d(e.getHours()+1),e.setMinutes(h%59)):e.setMinutes(h)}c=c||{};var e=new Date;if(c.minutes)f(e.getMinutes()+
+c.minutes);else if(c.hours)d(e.getHours()+c.hours);else{var g=c.days||30;e.setDate(e.getDate()+g)}document.cookie=b+"\x3d"+a+";expires\x3d"+(c.sessionExpiry?"":e.toGMTString())+";path\x3d"+(c.path||"/")+";domain\x3d"+(c.domain||this.getTopLevelDomain())};this.deleteCookie=function(b,a){a=a||{};document.cookie=b+"\x3d;expires\x3dThu, 01-Jan-1970 00:00:01 GMT;path\x3d"+(a.path||"/")+";domain\x3d"+(a.domain||this.getTopLevelDomain())};this.getTopLevelDomain=function(){for(var b=document.domain.split(".").reverse(),
+a="__test__",c=b[0],d=0;d<b.length;d++){document.cookie=a+"\x3d__test__;path\x3d/;domain\x3d"+c;if(null!=this.getCookie(a))return document.cookie=a+"\x3d;expires\x3dThu, 01-Jan-1970 00:00:01 GMT;path\x3d/;domain\x3d"+c,c;c=b[d+1]+"."+c}};this.getURLParameter=function(b,a){a=a||{};var c=a.url||location.search;b=decodeURI((RegExp("[?\x26]"+b+"\x3d([^\x26#]*)","i").exec(c)||[,""])[1]);return!b&&a.defaultValue?a.defaultValue:b};this.ready=function(b){/in/.test(document.readyState)?setTimeout("_analytics.ready("+
+b+")",9):b()};this.jQueryReady=function(b){window.jQuery?b():setTimeout("_analytics.jQueryReady("+b+")",9)};this.appendScript=function(b,a){a=a||{};var c=document.createElement("script");c.type="text/javascript";c.async="true";c.src=b;if(a.callback){var d=!1;c.onload=c.onreadystatechange=function(){d||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState||(d=!0,a.callback(),c.onload=c.onreadystatechange=null)}}a.scope?a.scope.appendChild(c):document.getElementsByTagName("head")[0].appendChild(c)};
+this.getTimestamp=function(b){function a(d){return("0"+d).slice(-2)}b=isNaN(b)?-8:parseInt(b);b=r()?b+1:b;var c=new Date;c=c.getTime()+6E4*c.getTimezoneOffset();b=new Date(c+36E5*b);return b.getFullYear()+"/"+a(b.getMonth()+1)+"/"+a(b.getDate())+" "+a(b.getHours())+":"+a(b.getMinutes())+":"+a(b.getSeconds())+"."+("00"+b.getMilliseconds()).slice(-3)};this.onEvent=function(b,a,c){function d(g,h,m){var k=g.target||g.srcElement;if(m||"function"!=typeof h)if(h||"function"!=typeof m){var n=[];if("string"==
+typeof h)for(var q=h.split(","),l=0;l<q.length;l++)n.push(function(p){return p&&p.matches&&p.matches(q[l].trim())});else n.push(h);do for(l=0;l<n.length;l++)if(h=n[l],h(k)){m.call(k,g);return}while(k=k&&k.parentNode)}else m.call(k,g);else h.call(k,g)}var f=document,e=function(g){d(g,a,c)};f.addEventListener?f.addEventListener(b,e,!0):f.attachEvent&&f.attachEvent("on"+b,e);return e};Date.now||(Date.now=function(){return(new Date).getTime()});String.prototype.trim||(String.prototype.trim=function(){return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+"")});Array.prototype.filter||(Array.prototype.filter=function(b,a){if("Function"!==typeof b&&"function"!==typeof b||!this)throw new TypeError;var c=this.length>>>0,d=Array(c),f=this,e=0,g=-1;if(void 0===a)for(;++g!==c;)if(g in this)if(b(f[g],g,f))d[e++]=f[g];else for(;++g!==c;)g in this&&b.call(a,f[g],g,f)&&(d[e++]=f[g]);d.length=e;return d});Array.prototype.indexOf||(Array.prototype.indexOf=function(b,a){if(null==this)throw new TypeError('"this" is null or not defined');var c=Object(this),d=c.length>>>
+0;if(0===d)return-1;a=+a||0;Infinity===Math.abs(a)&&(a=0);if(a>=d)return-1;for(a=Math.max(0<=a?a:d-Math.abs(a),0);a<d;){if(a in c&&c[a]===b)return a;a++}return-1});Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{value:function(b,a){if(null==this)throw new TypeError('"this" is null or not defined');var c=Object(this),d=c.length>>>0;if(0===d)return!1;a|=0;for(a=Math.max(0<=a?a:d-Math.abs(a),0);a<d;){var f=c[a];var e=b;if(f=f===e||"number"===typeof f&&"number"===typeof e&&
+isNaN(f)&&isNaN(e))return!0;a++}return!1}});String.prototype.includes||(String.prototype.includes=function(b,a){"number"!==typeof a&&(a=0);return a+b.length>this.length?!1:-1!==this.indexOf(b,a)});Element.prototype.matches=Element.prototype.matches||Element.prototype.mozMatchesSelector||Element.prototype.msMatchesSelector||Element.prototype.oMatchesSelector||Element.prototype.webkitMatchesSelector;!Element.prototype.matches&&document.querySelectorAll&&(Element.prototype.matches=function(b){var a=
+this;b=(a.document||a.ownerDocument).querySelectorAll(b);for(var c=b.length;0<=--c&&b.item(c)!==a;);return-1<c});"function"!=typeof Object.assign&&Object.defineProperty(Object,"assign",{value:function(b,a){if(null==b)throw new TypeError("Cannot convert undefined or null to object");for(var c=Object(b),d=1;d<arguments.length;d++){var f=arguments[d];if(null!=f)for(var e in f)Object.prototype.hasOwnProperty.call(f,e)&&(c[e]=f[e])}return c},writable:!0,configurable:!0})}).apply(_analytics);</script><script type="text/javascript" id="">var _analytics=_analytics||{};
+(function(){var e="Ecommerce";this.trackPurchase=function(a,d){d=d||{};var b=google_tag_manager["GTM-WL2QLG5"].macro(8);if(b&&window.analytics){b=d;var c=google_tag_manager["GTM-WL2QLG5"].macro(9);c=_analytics.getTimestamp(c);c={hit_timestamp:c,category:b.eventCategory||_analytics.getPageTemplate&&_analytics.getPageTemplate()||e,label:b.eventLabel};Object.assign(c,_analytics.contentGroups,_analytics.pageDimensions,_analytics.pageMetrics,b.dimensions,b.metrics);b=c;Object.assign(b,{nonInteraction:/false/i.test(d.nonInteraction)?!1:!0,id:a.id,
+affiliation:a.affiliation,revenue:a.revenue,tax:a.tax,shipping:a.shipping,coupon:a.coupon,products:a.products instanceof Array?a.products:[a.products]});analytics.track("Order Completed",b)}}}).apply(_analytics);</script><script type="text/javascript" id="">var _analytics=_analytics||{};
+(function(){function b(a){return/mktoForm/.test(a.id)?_analytics.getMarketoFormName():location.href.includes("https://trial.docker.com/")?"Docker Enterprise Hosted Trial":"Form: "+f(a,google_tag_manager["GTM-WL2QLG5"].macro(10))}function f(a,c){for(var e=[],d=0;d<c.length;d++){var b=a.getAttribute(c[d]);b&&e.push(c[d]+"\x3d"+b)}return 0==e.length?"(No Identifying Attributes)":e.join(", ")}var g="Global Forms";this.trackFormSubmission=function(a){a&&(a=b(a),-1==a.indexOf("action\x3dhttps://www.facebook.com/tr/")&&"Form: (No Identifying Attributes)"!=
+a&&(-1!=a.indexOf("Form: id\x3dsearch-form, action\x3d/search/node")&&(a="Form: id\x3dsearch-form, action\x3d/search/node"),this.trackEvent(_analytics.getPageTemplate&&_analytics.getPageTemplate()||g,"Form - submission",a)))};this.trackFormFieldInteraction=function(a){if(a){var c=a.form?b(a.form):"Form: (No Associated Form)";a="Field: "+f(a,google_tag_manager["GTM-WL2QLG5"].macro(11));this.trackEvent(_analytics.getPageTemplate&&_analytics.getPageTemplate()||g,"Form Field - interaction",c+" | "+a)}};this.tagFormFields=
+function(){_analytics.onEvent("blur","input[type\x3ddate]",function(){_analytics.trackFormFieldInteraction(this)});_analytics.onEvent("click","input[type\x3dradio], input[type\x3dcheckbox], input[type\x3dbutton]",function(){_analytics.trackFormFieldInteraction(this)});_analytics.onEvent("change","select, textarea, input[type\x3dtext], input[type\x3demail]",function(){_analytics.trackFormFieldInteraction(this)})}}).apply(_analytics);</script><script type="text/javascript" id="">var _analytics=_analytics||{};
+(function(){function f(){return _analytics.getPageTemplate&&_analytics.getPageTemplate()||k}var k="Global Links";this.trackLinkClick=function(c){if(c){var d=c.href,g=c.id;if(d&&!d.match(/^javascript:/i))if(d.match(/^mailto:/i))this.trackEvent(f(),"Email - click",d.replace(/^mailto:/i,""),{dimensions:{link_destination_url:d.replace(/^mailto:/i,""),link_id:g}});else if(d.match(/^tel:/i))this.trackEvent(f(),"Phone Number - click",d.replace(/^tel:|\D/ig,""),{dimensions:{link_destination_url:d.replace(/^tel:|\D/ig,""),
+link_id:g}});else if(d.match(/^https?:/i)){var a=c;var b="exe zip wav mp3 mov mpg avi wmv pdf doc docx xls xlsx ppt pptx dmg".split(" ");b=new RegExp(".*\\.("+b.join("|")+")(\\?.*|#.*)?$","i");b.test(a.href)?(b=a.href.match(b)[1].toUpperCase(),_analytics.trackEvent(f(),"Download "+b+" - click",a.href,{dimensions:{link_destination_url:a.href,link_id:a.id}}),a=!0):a=!1;if(!a){a:{a=c;b=google_tag_manager["GTM-WL2QLG5"].macro(12);for(var e=0;e<b.length;e++){var l=b[e][0],m=b[e][1],h=b[e][2];if(h&&h.test(a.href)){_analytics.trackEvent(f(),
+m,l+" | "+a.href,{dimensions:{link_destination_url:a.href,link_id:a.id}});a=!0;break a}}a=!1}if(!a){if(c.hostname){c=c.hostname;a=-1!=c.indexOf(_analytics.getTopLevelDomain());if(!a)for(b=google_tag_manager["GTM-WL2QLG5"].macro(13)||[],e=0;e<b.length;e++)if(-1!=c.indexOf(b[e].toLowerCase())){a=!0;break}c=a}else c=!0;c?g&&this.trackEvent(f(),"Internal Link - click",d,{dimensions:{link_destination_url:d,link_id:g}}):this.trackEvent(f(),"Outbound Link - click",d,{dimensions:{link_destination_url:d,link_id:g}})}}}}}}).apply(_analytics);</script><script type="text/javascript" id="">var _analytics=_analytics||{};
+(function(){this.getClientId=function(){if(window.ga&&ga.getAll){var a=ga.getAll();if(0<a.length)return a[0].get("clientId")}if(a=_analytics.getCookie("_ga"))if(a=a.split("."),3<a.length)return a[2]+"."+a[3]};this.getMouseflowSessionId=function(){var a;window.mouseflow&&mouseflow.getSessionId&&(a=mouseflow.getSessionId());return a};this.getMarketoFormName=function(){var a={"www.docker.com/blog":"Newsletter Subscription"};try{for(var b in a)if(a.hasOwnProperty(b)&&location.href.toLowerCase().includes(b))return a[b];var d=
+document.querySelector("title"),c=(d.textContent||d.innerText).replace(/[\||-] Docker$/,"").trim();"Contact Us - Address \x26 Phone Number"==c?c="Contact Us":/\/resources\//i.test(location.pathname)&&(c="Resource - "+c);return c}catch(e){}};this.getOptimizelyExperimentData=function(){try{if(window.optimizely&&optimizely.get&&optimizely.get("data")){for(var a=[],b=0;b<optimizely.get("state").getActiveExperimentIds().length;b++){var d=optimizely.get("state").getActiveExperimentIds()[b];if(optimizely.get("data").experiments[d]){var c=
+optimizely.get("state").getVariationMap()[d].id;a.push(d+":"+c)}}if(a.length)return a.join(" | ")}}catch(e){}}}).apply(_analytics);</script><script type="text/javascript" id="">(function(){if(google_tag_manager["GTM-WL2QLG5"].macro(14)){!function(){var a=window.analytics=window.analytics||[];if(!a.initialize)if(a.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{a.invoked=!0;a.methods="trackSubmit trackClick trackLink trackForm pageview identify reset group track ready alias debug page once off on".split(" ");a.factory=function(b){return function(){var d=Array.prototype.slice.call(arguments);d.unshift(b);a.push(d);return a}};for(var b=0;b<a.methods.length;b++){var c=
+a.methods[b];a[c]=a.factory(c)}a.load=function(b,d){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src="https://cdn.segment.com/analytics.js/v1/"+b+"/analytics.min.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(e,c);a._loadOptions=d};a.SNIPPET_VERSION="4.1.0";a.load(google_tag_manager["GTM-WL2QLG5"].macro(15))}}();analytics.ready(function(){window.ga&&(ga("require","linker"),ga("linker:autoLink",google_tag_manager["GTM-WL2QLG5"].macro(16)))});var f=0,g=300,h=setInterval(function(){if(window.ga&&
+ga.hasOwnProperty("loaded")&&!0===ga.loaded||++f>=g)clearInterval(h),_analytics.dataChannel.publishEvent("Track Page View")},9)}})();</script><script type="text/javascript" id="">var DATALAYER_OBJECT_NAME="dataLayer",referrerOverride=function(a){var c=window[DATALAYER_OBJECT_NAME]||[];c.push({event:"optimizely-referrer-override","optimizely-referrer":a})},sendCampaignData=function(a,c){if(a=optimizely.get("data")&&optimizely.get("data").campaigns[a]&&optimizely.get("data").campaigns[a].integrationSettings&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics.universal_analytics_slot){var e=
+window[DATALAYER_OBJECT_NAME]||[];e.push({event:"campaign-decided","optimizely-dimension-value":c,"optimizely-dimension-number":a})}},initNewOptimizelyIntegration=function(a,c){var e=!1,g=function(b){var d=window.optimizely.get&&window.optimizely.get("state"),f=d.getRedirectInfo()&&d.getRedirectInfo().referrer;!e&&f&&(a(f),e=!0);d=d.getDecisionString({campaignId:b});c(b,d)},h=function(){window.optimizely=window.optimizely||[];window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"campaignDecided"},
+handler:function(b){b=b.data.campaign.id;g(b)}})},k=function(){var b=window.optimizely&&window.optimizely.get&&window.optimizely.get("state");if(b){b=b.getCampaignStates({isActive:!0});for(var d in b)g(d)}};k();h()},initOptimizelyIntegration=function(a,c){initNewOptimizelyIntegration(a,c)};initOptimizelyIntegration(referrerOverride,sendCampaignData);</script><script type="text/javascript" id="">var docker_global_alert_id="disabled",docker_global_alert_text="";
+function gtm_handleCanvas(a){a.style.cssText="text-align:center;display:block;width:100%;min-height:38px;padding:10px 40px;background:#002c66;text-align:center;color:white;font-size:13px;font-weight:600;";a.innerHTML=window.docker_global_alert_text;var b=document.createElement("div");b.setAttribute("id","docker-global-alert-dismiss");b.style.cssText="cursor:pointer;position:absolute;top:6px;right:14px;font-size:16px;";b.textContent="\u2715";b.addEventListener("click",function(e){a.style.cssText="display:none;";
+e="docker-global-alert-id\x3d"+escape(window.docker_global_alert_id)+";";var d=14,c=new Date;c.setTime(c.getTime()+864E5*d);d="expires\x3d"+c.toUTCString()+";";c="path\x3d/;domain\x3ddocker.com";document.cookie=e+d+c});a.appendChild(b)}
+function gtm_prependAnnouncementBar(){var a=document.createElement("div");a.setAttribute("id","announcement-bar");a.style.cssText="display:block;width:100%;min-height:38px;padding:10px 40px;background:#002c66;text-align:center;color:white;font-size:13px;font-weight:600;";document.body.insertBefore(a,document.body.firstChild);return a}
+function gtm_getAnnouncementSelector(){var a=window.location.hostname,b="#announcement-bar";switch(!0){case /hub/.test(a):(a=document.querySelector('[data-testid\x3d"topBannerText"]'))&&a.textContent.includes("DockerCon")&&(a.parentElement.style.display="none");break;case /docs/.test(a):(a=document.getElementById("announcement-bar"))||gtm_prependAnnouncementBar()}return b}var match=document.cookie.match(RegExp("(^| )docker-global-alert-id\x3d([^;]+)"));
+if(match&&0==match[2].localeCompare(window.docker_global_alert_id)||"disabled"==docker_global_alert_id){var selector=gtm_getAnnouncementSelector(),canvas=document.querySelector(selector);canvas&&(canvas.style.cssText="display:none;")}else{var observer=new MutationObserver(function(a,b){a=gtm_getAnnouncementSelector();if(a=document.querySelector(a))gtm_handleCanvas(a),b.disconnect()});observer.observe(document,{childList:!0,subtree:!0})};</script><script type="text/javascript" id="">var docker_public_banner_id="anonymous-hub-signup02",docker_public_banner_text='\x3ch3 style\x3d"font-weight:600;font-size:24px;line-height:30px;"\x3eGet more out of Docker with a free Docker ID\x3c/h3\x3e\x3cp style\x3d"font-size:16px;line-height:22px;font-weight:400;"\x3eSign up for a Docker ID to gain access to all the free features Docker has to offer, including unlimited public repositories, increased container image requests, and much more.\x3c/p\x3e\x3ca style\x3d"background-color:#007bff; font-weight:600; color:white; font-size:14px;line-height:32px;margin-top:20px;padding:10px 30px;border-radius:3px;border-width:2px;border-color:#007bff;text-decoration:none;" href\x3d"https://hub.docker.com/signup?utm_source\x3ddocker\x26utm_medium\x3dinproductad\x26utm_campaign\x3dhubimagedetailanonusersignup"\x3eSign Up\x3c/a\x3e',
+dockerID="";function gtm_getAnonymousUserCanvas(c){var a=document.getElementById("anonymous-user-canvas");a||(a=document.createElement("div"),a.setAttribute("id","anonymous-user-canvas"),a.style.cssText="position:relative;display:block;width:100%;min-height:38px;padding:30px;background:#c4f0ff;border:1px solid #71CFFF;text-align:center;color:#26323f;font-size:13px;font-weight:600;margin-bottom:40px;border-radius:6px;",c&&c.insertBefore(a,c.firstChild));return a}
+function gtm_handleAnonymousUserCanvas(){var c=document.cookie.match(RegExp("(^| )docker-public-banner-id\x3d([^;]+)"));c&&0==c[2].localeCompare(window.docker_public_banner_id)||(c=new MutationObserver(function(a,d){if(a=document.querySelector('[data-testid\x3d"tabContent"]')){var b=gtm_getAnonymousUserCanvas(a);b&&(b.innerHTML=window.docker_public_banner_text,a=document.createElement("div"),a.setAttribute("id","docker-public-banner-dismiss"),a.style.cssText="cursor:pointer;position:absolute;top:6px;right:14px;font-size:16px;",
+a.textContent="\u2715",a.addEventListener("click",function(g){b.style.cssText="display:none;";g="docker-public-banner-id\x3d"+escape(window.docker_public_banner_id)+";";var f=14,e=new Date;e.setTime(e.getTime()+864E5*f);f="expires\x3d"+e.toUTCString()+";";e="path\x3d/;domain\x3ddocker.com";document.cookie=g+f+e}),b.appendChild(a),d.disconnect())}}),c.observe(document,{childList:!0,subtree:!0}))}
+var id_observer=new MutationObserver(function(c,a){c=document.getElementById("log_in");var d=document.querySelector('[data-testid\x3d"navBarUsernameDropdown"]');if(c){gtm_handleAnonymousUserCanvas();c="docker-id\x3d;";d=14;var b=new Date;b.setTime(b.getTime()+864E5*d);d="expires\x3d"+b.toUTCString()+";";b="path\x3d/;domain\x3ddocker.com";document.cookie=c+d+b;a.disconnect()}else d&&(window.dockerID=d.textContent,c="docker-id\x3d"+escape(window.dockerID)+";",d=14,b=new Date,b.setTime(b.getTime()+864E5*
+d),d="expires\x3d"+b.toUTCString()+";",b="path\x3d/;domain\x3ddocker.com",document.cookie=c+d+b,a.disconnect())});id_observer.observe(document,{childList:!0,subtree:!0});</script><script type="text/javascript" id="">var id_observer=new MutationObserver(function(a,c){if((a=document.querySelectorAll(".dMarkdown a"))&&0<a.length){var b;for(b=0;b<a.length;b++)location.hostname!=a[b].hostname&&(a[b].rel="nofollow noopener");c.disconnect()}});id_observer.observe(document,{childList:!0,subtree:!0});</script><script type="text/javascript" id="">var __dispatched__={},__i__=self.postMessage&&setInterval(function(){if(self.PrivacyManagerAPI&&__i__){var b={PrivacyManagerAPI:{action:"getConsentDecision",timestamp:(new Date).getTime(),self:self.location.host}};self.top.postMessage(JSON.stringify(b),"*");__i__=clearInterval(__i__)}},50);
+self.addEventListener("message",function(b,a){try{if(b.data&&(a=JSON.parse(b.data))&&(a=a.PrivacyManagerAPI)&&a.capabilities&&"getConsentDecision"==a.action){var d=self.PrivacyManagerAPI.callApi("getGDPRConsentDecision",self.location.host).consentDecision;d&&d.forEach(function(c){__dispatched__[c]||(self.dataLayer&&self.dataLayer.push({event:"GDPR Pref Allows"+c}),__dispatched__[c]=1)})}}catch(c){}});</script><script type="text/javascript" id="">(function(){_analytics.setDimension("page_url",window.location.href);_analytics.setDimension("page_referrer",document.referrer);_analytics.setDimension("browser_user_agent",navigator.userAgent);_analytics.setDimension("client_id",_analytics.getClientId());_analytics.setDimension("user_id",google_tag_manager["GTM-WL2QLG5"].macro(19));_analytics.setDimension("mouseflow_session_id",_analytics.getMouseflowSessionId());/^hub(-stage)?\.docker\.com$/.test(location.hostname)||_analytics.trackPageView(void 0,{dimensions:{optimizely_experiment_data:_analytics.getOptimizelyExperimentData()}})})();
+_analytics.dataChannel.publishEvent("Track Events");</script><script type="text/javascript" id="">/yes|true|on/i.test(String(google_tag_manager["GTM-WL2QLG5"].macro(21)))&&_analytics.tagFormFields();window.MktoForms2&&MktoForms2.whenReady&&MktoForms2.whenReady(function(a){a.onSuccess(function(a,b){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"mkto.form.success"});_analytics.trackEvent("Global Forms","Form - submission",_analytics.getMarketoFormName())})});</script><script type="text/javascript" id="">setInterval(function(){if(window.analyticsQueue instanceof Array)for(var a;a=window.analyticsQueue.shift();){var b=a.type;switch(b){case "page":a=a.properties||{};a.optimizely_experiment_data=_analytics.getOptimizelyExperimentData();_analytics.trackPageView(a.name,{dimensions:a});break;case "track":a=a.properties||{};b=a.category||"All";_analytics.trackEvent(b,a.event,void 0,{dimensions:a});break;case "identify":window.analytics&&"function"==typeof analytics.identify&&analytics.identify(a.userId,
+a.traits)}}},9);</script><script src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/api.js" async=""></script><iframe src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/pixel.html" style="display: none;"></iframe>  <script type="text/javascript" id="">var docker_public_banner_id="anonymous-hub-signup02",docker_public_banner_text='\x3ch3 style\x3d"font-weight:600;font-size:24px;line-height:30px;"\x3eGet more out of Docker with a free Docker ID\x3c/h3\x3e\x3cp style\x3d"font-size:16px;line-height:22px;font-weight:400;"\x3eSign up for a Docker ID to gain access to all the free features Docker has to offer, including unlimited public repositories, increased container image requests, and much more.\x3c/p\x3e\x3ca style\x3d"background-color:#007bff; font-weight:600; color:white; font-size:14px;line-height:32px;margin-top:20px;padding:10px 30px;border-radius:3px;border-width:2px;border-color:#007bff;text-decoration:none;" href\x3d"https://hub.docker.com/signup?utm_source\x3ddocker\x26utm_medium\x3dinproductad\x26utm_campaign\x3dhubimagedetailanonusersignup"\x3eSign Up\x3c/a\x3e',
+dockerID="";function gtm_getAnonymousUserCanvas(c){var a=document.getElementById("anonymous-user-canvas");a||(a=document.createElement("div"),a.setAttribute("id","anonymous-user-canvas"),a.style.cssText="position:relative;display:block;width:100%;min-height:38px;padding:30px;background:#c4f0ff;border:1px solid #71CFFF;text-align:center;color:#26323f;font-size:13px;font-weight:600;margin-bottom:40px;border-radius:6px;",c&&c.insertBefore(a,c.firstChild));return a}
+function gtm_handleAnonymousUserCanvas(){var c=document.cookie.match(RegExp("(^| )docker-public-banner-id\x3d([^;]+)"));c&&0==c[2].localeCompare(window.docker_public_banner_id)||(c=new MutationObserver(function(a,d){if(a=document.querySelector('[data-testid\x3d"tabContent"]')){var b=gtm_getAnonymousUserCanvas(a);b&&(b.innerHTML=window.docker_public_banner_text,a=document.createElement("div"),a.setAttribute("id","docker-public-banner-dismiss"),a.style.cssText="cursor:pointer;position:absolute;top:6px;right:14px;font-size:16px;",
+a.textContent="\u2715",a.addEventListener("click",function(g){b.style.cssText="display:none;";g="docker-public-banner-id\x3d"+escape(window.docker_public_banner_id)+";";var f=14,e=new Date;e.setTime(e.getTime()+864E5*f);f="expires\x3d"+e.toUTCString()+";";e="path\x3d/;domain\x3ddocker.com";document.cookie=g+f+e}),b.appendChild(a),d.disconnect())}}),c.observe(document,{childList:!0,subtree:!0}))}
+var id_observer=new MutationObserver(function(c,a){c=document.getElementById("log_in");var d=document.querySelector('[data-testid\x3d"navBarUsernameDropdown"]');if(c){gtm_handleAnonymousUserCanvas();c="docker-id\x3d;";d=14;var b=new Date;b.setTime(b.getTime()+864E5*d);d="expires\x3d"+b.toUTCString()+";";b="path\x3d/;domain\x3ddocker.com";document.cookie=c+d+b;a.disconnect()}else d&&(window.dockerID=d.textContent,c="docker-id\x3d"+escape(window.dockerID)+";",d=14,b=new Date,b.setTime(b.getTime()+864E5*
+d),d="expires\x3d"+b.toUTCString()+";",b="path\x3d/;domain\x3ddocker.com",document.cookie=c+d+b,a.disconnect())});id_observer.observe(document,{childList:!0,subtree:!0});</script><script type="text/javascript" id="">var id_observer=new MutationObserver(function(a,c){if((a=document.querySelectorAll(".dMarkdown a"))&&0<a.length){var b;for(b=0;b<a.length;b++)location.hostname!=a[b].hostname&&(a[b].rel="nofollow noopener");c.disconnect()}});id_observer.observe(document,{childList:!0,subtree:!0});</script><div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="текущую проверку reCAPTCHA можно пройти в течение ещё двух минут" src="./macbre_sphinxsearch - Docker Image _ Docker Hub_files/bframe.html" name="c-b2krnlkxfd3i" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div><script type="text/javascript" id="">var docker_public_banner_id="anonymous-hub-signup02",docker_public_banner_text='\x3ch3 style\x3d"font-weight:600;font-size:24px;line-height:30px;"\x3eGet more out of Docker with a free Docker ID\x3c/h3\x3e\x3cp style\x3d"font-size:16px;line-height:22px;font-weight:400;"\x3eSign up for a Docker ID to gain access to all the free features Docker has to offer, including unlimited public repositories, increased container image requests, and much more.\x3c/p\x3e\x3ca style\x3d"background-color:#007bff; font-weight:600; color:white; font-size:14px;line-height:32px;margin-top:20px;padding:10px 30px;border-radius:3px;border-width:2px;border-color:#007bff;text-decoration:none;" href\x3d"https://hub.docker.com/signup?utm_source\x3ddocker\x26utm_medium\x3dinproductad\x26utm_campaign\x3dhubimagedetailanonusersignup"\x3eSign Up\x3c/a\x3e',
+dockerID="";function gtm_getAnonymousUserCanvas(c){var a=document.getElementById("anonymous-user-canvas");a||(a=document.createElement("div"),a.setAttribute("id","anonymous-user-canvas"),a.style.cssText="position:relative;display:block;width:100%;min-height:38px;padding:30px;background:#c4f0ff;border:1px solid #71CFFF;text-align:center;color:#26323f;font-size:13px;font-weight:600;margin-bottom:40px;border-radius:6px;",c&&c.insertBefore(a,c.firstChild));return a}
+function gtm_handleAnonymousUserCanvas(){var c=document.cookie.match(RegExp("(^| )docker-public-banner-id\x3d([^;]+)"));c&&0==c[2].localeCompare(window.docker_public_banner_id)||(c=new MutationObserver(function(a,d){if(a=document.querySelector('[data-testid\x3d"tabContent"]')){var b=gtm_getAnonymousUserCanvas(a);b&&(b.innerHTML=window.docker_public_banner_text,a=document.createElement("div"),a.setAttribute("id","docker-public-banner-dismiss"),a.style.cssText="cursor:pointer;position:absolute;top:6px;right:14px;font-size:16px;",
+a.textContent="\u2715",a.addEventListener("click",function(g){b.style.cssText="display:none;";g="docker-public-banner-id\x3d"+escape(window.docker_public_banner_id)+";";var f=14,e=new Date;e.setTime(e.getTime()+864E5*f);f="expires\x3d"+e.toUTCString()+";";e="path\x3d/;domain\x3ddocker.com";document.cookie=g+f+e}),b.appendChild(a),d.disconnect())}}),c.observe(document,{childList:!0,subtree:!0}))}
+var id_observer=new MutationObserver(function(c,a){c=document.getElementById("log_in");var d=document.querySelector('[data-testid\x3d"navBarUsernameDropdown"]');if(c){gtm_handleAnonymousUserCanvas();c="docker-id\x3d;";d=14;var b=new Date;b.setTime(b.getTime()+864E5*d);d="expires\x3d"+b.toUTCString()+";";b="path\x3d/;domain\x3ddocker.com";document.cookie=c+d+b;a.disconnect()}else d&&(window.dockerID=d.textContent,c="docker-id\x3d"+escape(window.dockerID)+";",d=14,b=new Date,b.setTime(b.getTime()+864E5*
+d),d="expires\x3d"+b.toUTCString()+";",b="path\x3d/;domain\x3ddocker.com",document.cookie=c+d+b,a.disconnect())});id_observer.observe(document,{childList:!0,subtree:!0});</script><script type="text/javascript" id="">var id_observer=new MutationObserver(function(a,c){if((a=document.querySelectorAll(".dMarkdown a"))&&0<a.length){var b;for(b=0;b<a.length;b++)location.hostname!=a[b].hostname&&(a[b].rel="nofollow noopener");c.disconnect()}});id_observer.observe(document,{childList:!0,subtree:!0});</script></body></html>

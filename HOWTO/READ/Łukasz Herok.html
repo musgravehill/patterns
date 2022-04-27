@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)https://lukaszherok.com/post/view/9/Running%20SphinxSearch%20in%20Podman%20container -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Łukasz Herok</title>
+
+    <link href="./Łukasz Herok_files/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./Łukasz Herok_files/hack.min.css">
+    <link href="./Łukasz Herok_files/css" rel="stylesheet">
+    <link rel="stylesheet" href="./Łukasz Herok_files/bootstrap4-neon-glow.min.css">
+    <link rel="stylesheet" href="./Łukasz Herok_files/lh.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="./Łukasz Herok_files/analytics.js"></script><script async="" src="./Łukasz Herok_files/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-15477439-8');
+
+    </script>
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="https://lukaszherok.com/index" class="btn btn-outline-light btn-outline-brand navbar-brand" style="font-style: oblique;">
+        ŁH
+    </a>
+
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="https://lukaszherok.com/dash">Quantum
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="https://lukaszherok.com/softdevel">SoftDevel
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="https://lukaszherok.com/jrnl/jrnl_list">Jrnl
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://lukaszherok.com/post/post_list">Posts
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://lukaszherok.com/arts">Arts
+
+                </a>
+            </li>
+            
+                
+                    
+                
+            
+                
+                
+
+        </ul>
+
+        
+        <form class="form-inline my-2 my-lg-0" method="get" action="https://lukaszherok.com/search">
+            <div class="form-group">
+                <input class="form-control" id="q" name="q" placeholder="Search" required="" size="20" type="text" value="">
+            </div>
+        </form>
+        
+
+
+        <ul class="navbar-nav mt-2 mt-md-0 ">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="https://lukaszherok.com/auth/login">.</a>
+            </li>
+            
+
+        </ul>
+
+    </div>
+</nav>
+
+<div>
+
+
+</div>
+<div>
+    
+    
+    
+</div>
+
+
+
+<div class="art container py-5">
+    <h1>Running SphinxSearch in Podman container</h1>
+    
+
+    <p>This post documents the setup of SphinxSearch indexing the Postgresql database. The whole installation is hosted on Fedora using Podman containers in a pod.</p>
+<pre><code class="language-bash hljs">mkdir -p ~/podman/volumes/sphinxsearch/index
+sudo podman pull macbre/sphinxsearch
+</code></pre>
+<p>Prepare the config file, and put it under <code>~/podman/volumes/sphinxsearch</code> directory eg.</p>
+<pre><code class="hljs properties"><span class="hljs-attr">source</span> <span class="hljs-string">jrnl</span>
+<span class="hljs-attr">{</span>
+    <span class="hljs-attr">type</span>            = <span class="hljs-string">pgsql</span>
+
+    <span class="hljs-attr">sql_host</span>        = <span class="hljs-string">127.0.0.1</span>
+    <span class="hljs-attr">sql_user</span>        = <span class="hljs-string">$DBUSER</span>
+    <span class="hljs-attr">sql_pass</span>        = <span class="hljs-string">$DBPASS</span>
+    <span class="hljs-attr">sql_db</span>          = <span class="hljs-string">$DBNAME</span>
+    <span class="hljs-attr">sql_port</span>        = <span class="hljs-string">5432  </span>
+
+    <span class="hljs-attr">sql_query</span>       = <span class="hljs-string">\
+        SELECT id, body \
+        FROM jrnl</span>
+
+<span class="hljs-attr">}</span>
+
+
+<span class="hljs-attr">index</span> <span class="hljs-string">jrnl</span>
+<span class="hljs-attr">{</span>
+    <span class="hljs-attr">source</span>          = <span class="hljs-string">jrnl</span>
+    <span class="hljs-attr">path</span>            = <span class="hljs-string">/opt/sphinx/index/jrnl</span>
+<span class="hljs-attr">}</span>
+
+<span class="hljs-attr">indexer</span>
+<span class="hljs-attr">{</span>
+    <span class="hljs-attr">mem_limit</span>       = <span class="hljs-string">128M</span>
+<span class="hljs-attr">}</span>
+
+
+<span class="hljs-attr">searchd</span>
+<span class="hljs-attr">{</span>
+    <span class="hljs-attr">listen</span>          = <span class="hljs-string">9312</span>
+    <span class="hljs-attr">listen</span>          = <span class="hljs-string">9306:mysql41</span>
+    <span class="hljs-attr">log</span>             = <span class="hljs-string">/opt/sphinx/index/searchd.log</span>
+    <span class="hljs-attr">query_log</span>       = <span class="hljs-string">/opt/sphinx/index/query.log</span>
+    <span class="hljs-attr">read_timeout</span>    = <span class="hljs-string">5</span>
+    <span class="hljs-attr">max_children</span>    = <span class="hljs-string">30</span>
+    <span class="hljs-attr">pid_file</span>        = <span class="hljs-string">/opt/sphinx/index/searchd.pid</span>
+    <span class="hljs-attr">seamless_rotate</span> = <span class="hljs-string">1</span>
+    <span class="hljs-attr">preopen_indexes</span> = <span class="hljs-string">1</span>
+    <span class="hljs-attr">unlink_old</span>      = <span class="hljs-string">1</span>
+    <span class="hljs-attr">workers</span>         = <span class="hljs-string">threads # for RT to work</span>
+    <span class="hljs-attr">binlog_path</span>     = <span class="hljs-string">/opt/sphinx/index</span>
+<span class="hljs-attr">}</span>
+
+</code></pre>
+<p>Run the first indexer job through the container to build the index:</p>
+<pre><code class="language-bash hljs">sudo podman run --pod <span class="hljs-variable">$PODNAME</span> -v /home/<span class="hljs-variable">$USER</span>/podman/volumes/sphinxsearch/index/:/opt/sphinx/index:z -v /home/<span class="hljs-variable">$USER</span>/podman/volumes/sphinxsearch/sphinx.conf:/opt/sphinx/conf/sphinx.conf:z --rm macbre/sphinxsearch indexer --all --config /opt/sphinx/conf/sphinx.conf 
+
+</code></pre>
+<p>To make it possible for SphinxSearch to connect to PostgreSql you have to add them to the one pod. If you haven't already created dedicated pod for Postgres and SphinxSearch publishing its ports then issue the commands:</p>
+<pre><code class="language-bash hljs">sudo podman pod create --name <span class="hljs-variable">$PODNAME</span> -p 5432:5432 -p 9306:9306
+sudo podman run --name postgres12 --pod <span class="hljs-variable">$PODNAME</span> -e POSTGRES_PASSWORD=docker -d -v <span class="hljs-variable">$HOME</span>/podman/volumes/postgres12:/var/lib/postgresql/data:z postgres:12
+
+</code></pre>
+<p>The commands are run via sudo, as they will be later added to systemctl to make it system wide service.</p>
+<p>Now run the container and attach it to the pod. </p>
+<pre><code class="language-bash hljs">$ sudo podman run --name sphinxsearch --pod <span class="hljs-variable">$PODNAME</span> -d -v /home/<span class="hljs-variable">$USER</span>/podman/volumes/sphinxsearch/index/:/opt/sphinx/index:z -v /home/<span class="hljs-variable">$USER</span>/podman/volumes/sphinxsearch/sphinx.conf:/opt/sphinx/conf/sphinx.conf:z macbre/sphinxsearch
+<span class="hljs-comment"># Check the startup logs</span>
+$ sudo logs sphinxsearch
+</code></pre>
+<p>Test the index:</p>
+<pre><code class="language-bash hljs">$ sudo dnf install mariadb
+$ mysql -h127.0.0.1 -P9306
+ &gt; select * from jrnl <span class="hljs-built_in">where</span> match(<span class="hljs-string">'linux'</span>);
+
+</code></pre>
+<h2 id="systemctl">Systemctl</h2>
+<p>Configure systemd service to start container during the system startup</p>
+<pre><code class="language-bash hljs"> $ sudo setsebool -P container_manage_cgroup on
+ $ sudo podman generate systemd --name <span class="hljs-variable">$PODNAME</span>
+ <span class="hljs-comment"># create services</span>
+ $ sudo vim /etc/systemd/system/pod-<span class="hljs-variable">$PODNAME</span>.service
+ $ sudo vim /etc/systemd/system/container-postgres12.service
+ $ sudo vim /etc/systemd/system/container-sphinxsearch.service
+
+ $ sudo systemctl <span class="hljs-built_in">enable</span> pod-<span class="hljs-variable">$PODNAME</span>.service
+ $ sudo systemctl <span class="hljs-built_in">enable</span> container-postgres12.service
+ $ sudo systemctl <span class="hljs-built_in">enable</span> container-sphinxsearch.service
+</code></pre>
+<p>If you already have the pod with Postgresql container and with published port 9306  it is enough to add container-sphinxsearch.service and update the pod-$PODNAME.service (Requires and Before) then do <code>systemctl daemon-reload</code>.</p>
+<p>Check if everything works fine:</p>
+<pre><code class="language-bash hljs">$ systemctl stop pod-<span class="hljs-variable">$PODNAME</span>
+$ systemctl start pod-<span class="hljs-variable">$PODNAME</span>
+</code></pre>
+<p>and finally reboot the system to check if it starts properly.</p>
+<h2 id="update-index">Update index</h2>
+<p>To update index periodically with new data add to the crontab:</p>
+<pre><code class="language-bash hljs">* */2 * * * sudo podman <span class="hljs-built_in">exec</span> -it sphinxsearch indexer --rotate --all --config /opt/sphinx/conf/sphinx.conf &gt; /tmp/sphinxsearch-indexer.log 2&gt;&amp;1
+</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/macbre/docker-sphinxsearch#usage-example">macbre / docker-sphinxsearch</a></li>
+<li><a href="https://manual.manticoresearch.com/Starting_the_server/Docker#Configuring-Manticore-Search-with-Docker">Manticore in Docker</a></li>
+</ul>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+
+
+<link rel="stylesheet" href="./Łukasz Herok_files/railscasts.min.css">
+
+<script src="./Łukasz Herok_files/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="./Łukasz Herok_files/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="./Łukasz Herok_files/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="./Łukasz Herok_files/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="./Łukasz Herok_files/MathJax.js" async=""></script>
+<script src="./Łukasz Herok_files/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
+<script>
+moment.locale("en");
+function flask_moment_render(elem) {
+    timestamp = moment($(elem).data('timestamp'));
+    func = $(elem).data('function');
+    format = $(elem).data('format');
+    timestamp2 = $(elem).data('timestamp2');
+    no_suffix = $(elem).data('nosuffix');
+    args = [];
+    if (format)
+        args.push(format);
+    if (timestamp2)
+        args.push(moment(timestamp2));
+    if (no_suffix)
+        args.push(no_suffix);
+    $(elem).text(timestamp[func].apply(timestamp, args));
+    $(elem).removeClass('flask-moment').show();
+}
+function flask_moment_render_all() {
+    $('.flask-moment').each(function() {
+        flask_moment_render(this);
+        if ($(this).data('refresh')) {
+            (function(elem, interval) { setInterval(function() { flask_moment_render(elem) }, interval); })(this, $(this).data('refresh'));
+        }
+    })
+}
+$(document).ready(function() {
+    flask_moment_render_all();
+});
+</script>
+
+
+</body></html>

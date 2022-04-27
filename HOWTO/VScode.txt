@@ -1,1 +1,12 @@
+{path_to_workspace}/.vscode/settings.json
+Если вы не видите папку .vscode в проводнике, вам нужно изменить настройки в проводнике, чтобы увидеть скрытые папки.
+
 отключить базовые подсказки РНР, чтобы не показывало миллион всех вариантов. Будет работать только подсказки extension->intelliphence. Этих подсказок мало, зато они реально полезные.
+
+Quick Start
+Disable the built-in VSCode PHP Language Features.
+
+Go to Extensions.
+Search for @builtin php
+Disable PHP Language Features. Leave PHP Language Basics enabled for syntax highlighting.
+Note that other (3rd party) PHP extensions which provide similar functionality should also be disabled for best results.

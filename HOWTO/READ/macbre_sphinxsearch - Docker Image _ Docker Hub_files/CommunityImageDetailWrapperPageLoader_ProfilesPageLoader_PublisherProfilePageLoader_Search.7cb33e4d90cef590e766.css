@@ -1,0 +1,633 @@
+/* defined here: https://www.figma.com/file/rien0oukkvklddrnv8akct/all-colors_dds-(copy) */
+
+/* a.k.a. docker red */
+
+/* a.k.a. docker blue */
+
+/* a.k.a. docker green */
+
+/* media queries */
+
+/* lib/constants/sizes */
+
+/* layout */
+
+/* spacing */
+
+/* misc */
+
+/* body font sizes */
+
+/* heading font sizes */
+
+/* font family */
+
+/* -----------------------------------------------------------------------------
+ | Color Dictionary
+----------------------------------------------------------------------------- */
+
+/* Purples - lightest to darkest */
+
+/* Blues - lightest to darkest */
+
+/* Greens - lightest to darkest */
+
+/* Reds - lightest to darkest */
+
+/* Yellows - lightest to darkest */
+
+/* Grays - lightest to darkest */
+
+/* -----------------------------------------------------------------------------
+ | Color Purpose Vars
+----------------------------------------------------------------------------- */
+
+/* -base background colors */
+
+/* lib/constants/variants */
+
+/* CTA component colors */
+
+/* cohesion font colors */
+
+/* Autobuilds Colors */
+
+/* audit logs colors */
+
+/* State Colors */
+
+/* -- These use colors not found in the styleguide -- */
+
+/* - end -- */
+
+/* Note: These are volumes states and not actual/valid object states.
+ Added here for completion
+*/
+
+/* button */
+
+/* select */
+
+/* input */
+
+/* stylelint-disable value-list-comma-newline-after */
+
+/* box-shadow for store cards */
+
+/* component: tab */
+
+/* Publish flow */
+
+/* Public Profile */
+
+/* v2 */
+
+/* Sign up form width */
+
+/**
+  This was extracted from the Wrapped component. There are subtle differences
+  from the wrapped mixin, but they could probably be unified with a little
+  effort.
+
+  It's defined here as a rule rather than a mixin so it can be used with
+  `composes`, which generally yields smaller code bundles.
+*/
+
+.styles__wrapped___3-YTs {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1280px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* https://goo.gl/Mus6xj */
+
+/* Font sizes */
+
+/* columns */
+
+/* Three equal columns */
+
+/* Rows */
+
+/* TODO:  Use flex. Flexbox doesn't seem to work on iOS safari/chrome
+          when overriding a lost column for small devices (?)(Registration page)
+*/
+
+@-webkit-keyframes styles__fadein___1uFK5 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes styles__fadein___1uFK5 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* flex does not work inside firefox buttons, this is a workaround
+   http://stackoverflow.com/questions/24289251/flexbox-not-working-in-buttons-in-firefox */
+
+/* Causes text that overflows in an element to be truncated with an ellipsis. */
+
+/*
+ A little trick for vertically centering text content that doesn't wrap when
+ the element's height is known.
+*/
+
+@-webkit-keyframes styles__load8___A_wdT {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes styles__load8___A_wdT {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* hide the ALT text in certain browsers (firefox) */
+
+.styles__hideAltText___IyemE {
+  color: transparent;
+}
+
+/*
+ * Make sure there is no flash between when the image calls onLoad() and the
+ * loaded styles are applied
+ */
+
+.styles__hideFadeInFlash___29bQM {
+  opacity: 0;
+}
+
+.styles__fadeInImage___dfisB {
+  -webkit-animation: styles__fadein___1uFK5 0.6s;
+          animation: styles__fadein___1uFK5 0.6s;
+}
+
+.styles__img___1KBGq {
+  /*
+    The img this component renders is wrapped in a span. If that span is
+    positioned with specific dimensions, we want the image to match them.
+  */
+  width: 100%;
+  height: auto;
+}
+
+@keyframes styles__fadein___1uFK5 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* defined here: https://www.figma.com/file/rien0oukkvklddrnv8akct/all-colors_dds-(copy) */
+
+/* a.k.a. docker red */
+
+/* a.k.a. docker blue */
+
+/* a.k.a. docker green */
+
+/* media queries */
+
+/* lib/constants/sizes */
+
+/* layout */
+
+/* spacing */
+
+/* misc */
+
+/* body font sizes */
+
+/* heading font sizes */
+
+/* font family */
+
+/* -----------------------------------------------------------------------------
+ | Color Dictionary
+----------------------------------------------------------------------------- */
+
+/* Purples - lightest to darkest */
+
+/* Blues - lightest to darkest */
+
+/* Greens - lightest to darkest */
+
+/* Reds - lightest to darkest */
+
+/* Yellows - lightest to darkest */
+
+/* Grays - lightest to darkest */
+
+/* -----------------------------------------------------------------------------
+ | Color Purpose Vars
+----------------------------------------------------------------------------- */
+
+/* -base background colors */
+
+/* lib/constants/variants */
+
+/* CTA component colors */
+
+/* cohesion font colors */
+
+/* Autobuilds Colors */
+
+/* audit logs colors */
+
+/* State Colors */
+
+/* -- These use colors not found in the styleguide -- */
+
+/* - end -- */
+
+/* Note: These are volumes states and not actual/valid object states.
+ Added here for completion
+*/
+
+/* button */
+
+/* select */
+
+/* input */
+
+/* stylelint-disable value-list-comma-newline-after */
+
+/* box-shadow for store cards */
+
+/* component: tab */
+
+/* Publish flow */
+
+/* Public Profile */
+
+/* v2 */
+
+/* Sign up form width */
+
+/**
+  This was extracted from the Wrapped component. There are subtle differences
+  from the wrapped mixin, but they could probably be unified with a little
+  effort.
+
+  It's defined here as a rule rather than a mixin so it can be used with
+  `composes`, which generally yields smaller code bundles.
+*/
+
+.styles__wrapped___2aeUn {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1280px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* https://goo.gl/Mus6xj */
+
+/* Font sizes */
+
+/* columns */
+
+/* Three equal columns */
+
+/* Rows */
+
+/* TODO:  Use flex. Flexbox doesn't seem to work on iOS safari/chrome
+          when overriding a lost column for small devices (?)(Registration page)
+*/
+
+@-webkit-keyframes styles__fadein___1WPex {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes styles__fadein___1WPex {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* flex does not work inside firefox buttons, this is a workaround
+   http://stackoverflow.com/questions/24289251/flexbox-not-working-in-buttons-in-firefox */
+
+/* Causes text that overflows in an element to be truncated with an ellipsis. */
+
+/*
+ A little trick for vertically centering text content that doesn't wrap when
+ the element's height is known.
+*/
+
+@-webkit-keyframes styles__load8___27EYe {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes styles__load8___27EYe {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.styles__chip___3ZtYi {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f1f4f6;
+  border-radius: 2px;
+  color: #81939f;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 6px 10px;
+}
+
+.styles__clickable___1fzXr {
+  cursor: pointer;
+  text-decoration: none
+}
+
+.styles__clickable___1fzXr:hover {
+  opacity: 0.7;
+}
+
+.styles__withIcon___2uxjQ {
+  background-color: #e0e4e7;
+  color: #445d6e;
+  font-size: 13px;
+  line-height: 13px;
+  padding: 10px 12px;
+}
+
+.styles__icon___3K8bU {
+  width: 13px;
+  height: 13px;
+}
+
+.styles__icon___3K8bU {
+  margin-right: 10px;
+  fill: #445d6e;
+}
+
+/* defined here: https://www.figma.com/file/rien0oukkvklddrnv8akct/all-colors_dds-(copy) */
+
+/* a.k.a. docker red */
+
+/* a.k.a. docker blue */
+
+/* a.k.a. docker green */
+
+/* media queries */
+
+/* lib/constants/sizes */
+
+/* layout */
+
+/* spacing */
+
+/* misc */
+
+/* body font sizes */
+
+/* heading font sizes */
+
+/* font family */
+
+/* -----------------------------------------------------------------------------
+ | Color Dictionary
+----------------------------------------------------------------------------- */
+
+/* Purples - lightest to darkest */
+
+/* Blues - lightest to darkest */
+
+/* Greens - lightest to darkest */
+
+/* Reds - lightest to darkest */
+
+/* Yellows - lightest to darkest */
+
+/* Grays - lightest to darkest */
+
+/* -----------------------------------------------------------------------------
+ | Color Purpose Vars
+----------------------------------------------------------------------------- */
+
+/* -base background colors */
+
+/* lib/constants/variants */
+
+/* CTA component colors */
+
+/* cohesion font colors */
+
+/* Autobuilds Colors */
+
+/* audit logs colors */
+
+/* State Colors */
+
+/* -- These use colors not found in the styleguide -- */
+
+/* - end -- */
+
+/* Note: These are volumes states and not actual/valid object states.
+ Added here for completion
+*/
+
+/* button */
+
+/* select */
+
+/* input */
+
+/* stylelint-disable value-list-comma-newline-after */
+
+/* box-shadow for store cards */
+
+/* component: tab */
+
+/* Publish flow */
+
+/* Public Profile */
+
+/* v2 */
+
+/* Sign up form width */
+
+/**
+  This was extracted from the Wrapped component. There are subtle differences
+  from the wrapped mixin, but they could probably be unified with a little
+  effort.
+
+  It's defined here as a rule rather than a mixin so it can be used with
+  `composes`, which generally yields smaller code bundles.
+*/
+
+.styles__wrapped___28xZh {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1280px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* https://goo.gl/Mus6xj */
+
+/* Font sizes */
+
+/* columns */
+
+/* Three equal columns */
+
+/* Rows */
+
+/* TODO:  Use flex. Flexbox doesn't seem to work on iOS safari/chrome
+          when overriding a lost column for small devices (?)(Registration page)
+*/
+
+@-webkit-keyframes styles__fadein___Hc2bP {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes styles__fadein___Hc2bP {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* flex does not work inside firefox buttons, this is a workaround
+   http://stackoverflow.com/questions/24289251/flexbox-not-working-in-buttons-in-firefox */
+
+/* Causes text that overflows in an element to be truncated with an ellipsis. */
+
+/*
+ A little trick for vertically centering text content that doesn't wrap when
+ the element's height is known.
+*/
+
+@-webkit-keyframes styles__load8___32_1Y {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes styles__load8___32_1Y {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/* https://www.figma.com/file/x9ROksCOkWHgFxpoVFjKbQ/Badges?node-id=167%3A324 */
+
+.styles__container___3xhl6 {
+  border-radius: 24px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  white-space: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.styles__container___3xhl6 svg {
+    height: 100%;
+  }
+
+.styles__verifiedPublisher___mcrmL {
+  background-color: #e8f4fd;
+  color: #006dd5;
+}
+
+.styles__verifiedPublisher___mcrmL svg path {
+    fill: #006dd5;
+  }
+
+.styles__officialImage___3ZSqU {
+  background-color: #eaf7f4;
+  color: #217963;
+}
+
+.styles__officialImage___3ZSqU svg path {
+    fill: #217963;
+  }
+
+/* named 'small' because there's a bigger version in the figma linked above */
+
+.styles__small___3HF6n {
+  height: 24px;
+  padding: 4px 8px;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.styles__small___3HF6n > svg {
+    margin-right: 4px;
+  }
+
