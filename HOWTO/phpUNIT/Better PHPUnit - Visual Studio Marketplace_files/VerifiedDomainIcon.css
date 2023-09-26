@@ -1,0 +1,18 @@
+.verified-domain-icon-container {
+  display: flex;
+  flex-direction: row;
+  margin-right: 6px;
+  font-size: 17px;
+  line-height: 17px;
+  color: #0078d4;
+}
+
+.verified-domain-icon-container .verified-domain-icon-background {
+  color: #ffffff;
+  position: absolute;
+}
+
+.verified-domain-icon-container .verified-domain-icon-foreground {
+  position: absolute;
+  z-index: 1;
+}
