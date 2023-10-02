@@ -41,6 +41,3 @@ echo $listener->getTitle() .'_'.$listener->getDesc();
 
 
 
-
-
-
