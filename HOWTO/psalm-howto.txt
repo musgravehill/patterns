@@ -16,3 +16,5 @@ cd /var/www/patterns && /var/www/patterns/vendor/bin/psalm --set-baseline=psalm-
 cd /var/www/patterns && /var/www/patterns/vendor/bin/psalm --update-baseline 
 
 cd /var/www/patterns && /var/www/patterns/vendor/bin/psalm --no-cache
+
+Very good instrument!
