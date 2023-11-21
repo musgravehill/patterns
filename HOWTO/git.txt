@@ -1,2 +1,4 @@
 git config --global user.email "musgravehill@gmail.com"
 git config --global user.name "bobubuntu"
+
+what about several accounts?
